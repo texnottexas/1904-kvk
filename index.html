@@ -150,6 +150,15 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .banner .cap{display:none}
 .frame[data-step="0"] .cap0,.frame[data-step="1"] .cap1,
 .frame[data-step="2"] .cap2,.frame[data-step="3"] .cap3{display:inline}
+.ops{display:grid;gap:.9rem;margin-top:1.2rem}
+.op{border:1px solid var(--bone-edge);border-radius:12px;padding:1.05rem 1.15rem;background:oklch(1 0 0 / .55)}
+.op h4{font-family:"Saira Condensed";font-weight:700;text-transform:uppercase;font-size:1.05rem;color:var(--ink);margin-bottom:.3rem}
+.op p{font-size:.95rem;color:var(--ink-soft)}
+.opsteps{margin:.6rem 0 .6rem 0;padding:0;list-style:none;counter-reset:os;display:grid;gap:.35rem}
+.opsteps li{counter-increment:os;position:relative;padding-left:1.9rem;font-size:.95rem;color:var(--ink-soft)}
+.opsteps li::before{content:counter(os);position:absolute;left:0;top:.05rem;width:1.35rem;height:1.35rem;
+  border-radius:50%;display:grid;place-items:center;font-family:"JetBrains Mono";font-weight:700;font-size:.72rem;
+  color:#fff;background:var(--steel-dp)}
 .ringdots{display:flex;gap:.4rem;justify-content:center;margin-top:.9rem}
 .ringdots button{width:28px;height:5px;border-radius:99px;border:0;padding:0;cursor:pointer;
   background:oklch(0.745 0.115 80 / .3);transition:background .3s}
@@ -666,6 +675,32 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
     <p style="margin-top:.9rem;color:var(--ink-soft);font-size:.95rem">The garrison stack we want is
       <b>Saul, Hilde, Chenko, Chenko</b>. Your skill needs to be maxed or you get skipped. Gear on a joiner does
       nothing at all, so do not sit out a rally because you think your gear is bad.</p>
+
+    <h3 class="subhead">For R4 and R5</h3>
+    <p style="margin-top:.45rem;color:var(--ink-soft);max-width:58ch">Two things you will need to do mid fight, so
+      practise them before the day. Both come from the
+      <a href="https://texnottexas.github.io/kingshot-garrison/" style="color:var(--crimson);text-decoration:none;border-bottom:1px solid oklch(0.52 0.205 26 / .4)">garrison guide</a>.</p>
+
+    <div class="ops">
+      <div class="op">
+        <h4>Push the wrong person out of the four slots</h4>
+        <p>A maxed hero in the wrong slot holds that slot for the entire fight. You can bump them out without
+          kicking them from the garrison:</p>
+        <ol class="opsteps">
+          <li>Find them in the rally or garrison list.</li>
+          <li>Tap the three dots next to their name.</li>
+          <li>Choose <b>Make Rally Leader</b>.</li>
+          <li>Switch the rally lead straight back to whoever it should be.</li>
+        </ol>
+        <p>They drop to the bottom of the list, which takes them out of the bonus slots and lets the next person in.</p>
+      </div>
+      <div class="op">
+        <h4>Watch the combined ratio</h4>
+        <p>The garrison shows one combined troop ratio for everyone inside it, so it drifts as people take losses and
+          resend. Steer it back toward 60/20/20 by asking named people to resend a specific type. Tap the blue arrow
+          to the right of someone's name to see what they actually brought.</p>
+      </div>
+    </div>
   </div>
 </section>
 
