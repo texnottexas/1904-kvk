@@ -188,7 +188,7 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .tbl{overflow-x:auto;border-radius:12px;margin-top:1.4rem}
 .dark .tbl{border:1px solid oklch(0.745 0.115 80 / .3)}
 .light .tbl{border:1px solid var(--bone-edge);background:oklch(1 0 0 / .5)}
-table{width:100%;border-collapse:collapse;min-width:480px;font-size:.97rem}
+table{width:100%;border-collapse:collapse;min-width:340px;font-size:.97rem}
 th,td{text-align:left;padding:.7rem .95rem;vertical-align:top}
 thead th{font-family:"Saira Condensed";font-weight:700;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase}
 .dark thead th{color:oklch(0.8 0.05 80);background:oklch(1 0 0 / .05)}
@@ -204,6 +204,10 @@ td.m{font-family:"JetBrains Mono";font-size:.9rem}
   border:1px solid var(--brass-dp);color:var(--brass-br);background:oklch(0.745 0.115 80 / .16)}
 .pill.kvk{border-color:var(--steel);color:oklch(0.78 0.11 243);background:oklch(0.585 0.12 245 / .18)}
 .pill.flex{border-style:dashed;border-color:var(--brass-dp);color:var(--brass-br);background:transparent}
+.dark tbody tr.go td{background:oklch(0.745 0.115 80 / .1)}
+.gomark{display:inline-block;margin-left:.45rem;font-family:"Saira Condensed";font-weight:800;font-size:.7rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--night);background:var(--brass);
+  border-radius:999px;padding:.1rem .45rem;vertical-align:middle}
 .subhead{font-family:"Saira Condensed";font-weight:700;text-transform:uppercase;font-size:1.35rem;margin-top:2.1rem}
 .dark .subhead{color:var(--bone)}
 
@@ -587,15 +591,17 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
 
     <div class="tbl">
       <table>
-        <thead><tr><th>Turrets</th><th>Their garrison takes</th><th>We get</th><th></th></tr></thead>
+        <thead><tr><th>Turrets</th><th>Their garrison takes</th><th>We get</th></tr></thead>
         <tbody>
-          <tr><td class="m">1</td><td class="m">~2% a shot</td><td><span class="pill">+8%</span></td><td>Barely started.</td></tr>
-          <tr><td class="m">2</td><td class="m">~4% a shot</td><td><span class="pill">+12%</span></td><td>They are starting to feel it.</td></tr>
-          <tr><td class="m">3</td><td class="m">~6% a shot</td><td><span class="pill">+15%</span></td><td><b>Go. This is what we actually aim for.</b></td></tr>
-          <tr><td class="m">4</td><td class="m">~8% a shot</td><td><span class="pill">+20%</span></td><td>Ideal, but do not sit around waiting for it.</td></tr>
+          <tr><td class="m">1</td><td class="m">~2% a shot</td><td><span class="pill">+8%</span></td></tr>
+          <tr><td class="m">2</td><td class="m">~4% a shot</td><td><span class="pill">+12%</span></td></tr>
+          <tr class="go"><td class="m">3</td><td class="m">~6% a shot</td><td><span class="pill">+15%</span><span class="gomark">go</span></td></tr>
+          <tr><td class="m">4</td><td class="m">~8% a shot</td><td><span class="pill">+20%</span></td></tr>
         </tbody>
       </table>
     </div>
+    <p style="margin-top:.85rem;color:oklch(0.84 0.03 250);font-size:.95rem;max-width:56ch">
+      <b>Three is what we actually aim for.</b> Four is ideal but not worth delaying the castle rally over.</p>
 
     <div class="callout hot">
       <div class="big">Losing a turret resets it</div>
