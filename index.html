@@ -130,6 +130,15 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .rule h3{font-size:1.26rem;color:var(--ink);margin-bottom:.15rem}
 .rule p{color:var(--ink-soft);font-size:1rem}
 
+/* plan summary */
+.plan{list-style:none;counter-reset:pl;display:grid;gap:.75rem;margin-top:1.4rem}
+.plan li{counter-increment:pl;position:relative;padding-left:2.9rem;font-size:1.08rem;color:var(--ink);line-height:1.45}
+.plan li::before{content:counter(pl);position:absolute;left:0;top:0;width:2rem;height:2rem;border-radius:50%;
+  display:grid;place-items:center;font-family:"Saira Condensed";font-weight:800;font-size:1rem;color:#fff;
+  background:var(--crimson);box-shadow:0 2px 8px -2px oklch(0.52 0.205 26 / .7)}
+.plan li b{color:var(--ink)}
+.why{font-size:1.35rem;color:var(--ink);margin-top:2.2rem}
+
 /* callout */
 .callout{position:relative;padding:1.2rem 1.35rem;border-radius:12px;color:var(--bone);margin-top:1.5rem;
   background:linear-gradient(135deg,var(--steel-dp),oklch(0.32 0.08 250));overflow:hidden;
@@ -262,7 +271,7 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
     <div class="hero-text">
       <div class="kicker"><img src="assets/logo-kingshot.png" alt="Kingshot"><span class="notranslate">Battle Plan</span></div>
       <h1><span class="small">Kingdom of Power</span><span class="word">Castle Battle</span></h1>
-      <p class="blurb">The castle is a stopwatch, not a fortress. Time is counted per alliance, and it adds up.</p>
+      <p class="blurb">Occupation time is counted per alliance and it adds up over the whole five hours, so short holds still count.</p>
       <div class="byline"><span class="seal notranslate">1904</span><span><b>WPK</b> and <b>KVK</b> &middot; we won prep, so we invade &middot; all out, no rules</span></div>
     </div>
     <div class="hero-art">
@@ -290,29 +299,44 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
 
 <section class="light">
   <div class="wrap">
-    <div class="track"><span class="tk notranslate">T01</span><span class="label">Brief</span></div>
-    <h2 class="head">Three rules that decide everything</h2>
-    <p class="sub">If you remember nothing else, remember these.</p>
+    <div class="track"><span class="tk notranslate">T01</span><span class="label">The plan</span></div>
+    <h2 class="head">The plan, in short</h2>
+    <p class="sub">If you only read one part of this page, read this bit. Everything after it is detail.</p>
     <div class="crendiv" aria-hidden="true"></div>
+
+    <ol class="plan">
+      <li data-rv>Take <b>all four turrets</b> as soon as the window opens, and hold them. They shoot at whoever is
+        sitting in the castle, so we want them before we want the castle.</li>
+      <li data-rv>Leave them in the castle for a while and let the turrets wear them down. The longer we hold a
+        turret the faster it fires.</li>
+      <li data-rv>Around <b>T+1:30</b>, double rally them out of it. A <b>WPK</b> rally takes it, Maven garrisons,
+        and from then on we are running the clock.</li>
+      <li data-rv>Everyone not holding something plays bait, so they waste troops attacking our bases. That costs
+        them about <b>35%</b> of their losses permanently, ours just go to the infirmary.</li>
+      <li data-rv>Do not hold troops back. Everyone gets up to <b>90%</b> of them back after the battle.</li>
+    </ol>
+
+    <h3 class="why">Why we are doing it that way</h3>
 
     <div class="rules">
       <div class="rule" data-rv><span class="n notranslate">1</span><div>
         <h3>The clock is per alliance</h3>
-        <p>Three of ours holding 70, 60 and 50 minutes all lose to one alliance holding 75.
-          <b>WPK sits in the castle.</b> Everyone else feeds it.</p></div></div>
+        <p>If three of our alliances hold it for 70, 60 and 50 minutes, we still lose to one alliance
+          that held it for 75. So <b>WPK will be the one sitting in the castle</b>, and everyone else supports that.</p></div></div>
       <div class="rule" data-rv><span class="n notranslate">2</span><div>
-        <h3>Structures are cheap, cities are not</h3>
-        <p>Castle and turret losses go to the infirmary. Attacking someone's city kills
-          <b>35% of your own casualties for good</b>. We want them swinging at us, not the reverse.</p></div></div>
+        <h3>Attacking bases costs more than attacking the castle</h3>
+        <p>Losses at the castle and turrets go to your infirmary. Attacking someone's base kills about
+          <b>35% of your own casualties permanently</b>, which is why we would rather they came at us.</p></div></div>
       <div class="rule" data-rv><span class="n notranslate">3</span><div>
         <h3>You get up to 90% back</h3>
-        <p>Field Triage returns most of it afterwards. Do not hoard. Troops sitting at home win nothing.</p></div></div>
+        <p>Field Triage gives most of it back after the battle, so there is no need to hold troops back.</p></div></div>
     </div>
 
     <div class="callout hot">
-      <div class="big">Infirmary overflow is the only real loss</div>
-      <p>Once it fills, 30% of everything after that is gone for good. Batch heal all battle: slider to about
-        30 minutes, heal, spam alliance help, repeat. Speedups are for when you are about to overflow, nothing else.</p>
+      <div class="big">Keep an eye on your infirmary</div>
+      <p>Once it is full, roughly 30% of anything after that dies permanently. Heal in small batches the whole way
+        through. Set the slider to around 30 minutes, hit heal, ask for alliance help, and repeat. Save your
+        speedups for when you are actually close to filling up.</p>
     </div>
   </div>
 </section>
@@ -320,33 +344,33 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
 <section class="dark">
   <div class="wrap">
     <div class="track"><span class="tk notranslate">T02</span><span class="label">Your job</span></div>
-    <h2 class="head">Find yourself on this list</h2>
-    <p class="sub">Not sure which one you are? Ask before the window opens, not during it.</p>
+    <h2 class="head">Who does what</h2>
+    <p class="sub">If you are not sure which one you are, please ask before the window opens.</p>
 
     <div class="tbl">
       <table>
         <thead><tr><th>You are</th><th>You do</th></tr></thead>
         <tbody>
-          <tr><td><b>Rally lead</b></td><td>Launch on the castle when called. A <b>WPK</b> rally always lands the final blow.</td></tr>
-          <tr><td><b>Garrison</b></td><td>Sit in the castle or a turret and stay. You are not there for kills.</td></tr>
-          <tr><td><b>Joiner</b></td><td>Join with your assigned hero in slot 1. Check T05, it may not be the hero you expect.</td></tr>
-          <tr><td><b>Alt or farm</b></td><td>Take tiles near the castle, play bait, call out what you see.</td></tr>
-          <tr><td><b>Cannot attend</b></td><td>Skip the castle. Go invade and do as much damage as you can.</td></tr>
+          <tr><td><b>Rally lead</b></td><td>Launch on the castle when called. A <b>WPK</b> rally should be the one that finishes it.</td></tr>
+          <tr><td><b>Garrison</b></td><td>Sit in the castle or on a turret and stay there. You are not there to get kills.</td></tr>
+          <tr><td><b>Joiner</b></td><td>Join with your assigned hero in slot 1. See T05 for which one that is.</td></tr>
+          <tr><td><b>Alt or farm</b></td><td>Take tiles near the castle, act as bait, and call out anything you see.</td></tr>
+          <tr><td><b>Cannot attend</b></td><td>Skip the castle and go invade instead, do as much damage as you can.</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="callout">
-      <div class="big">Coming to castle battle? Sit out the invasion phase</div>
-      <p>Do not burn troops beforehand. Turn up with an empty infirmary or you are dead weight when it counts.</p>
+      <div class="big">If you are coming to castle battle, sit out the invasion phase</div>
+      <p>You will lose troops for nothing and turn up wounded. Come in with an empty infirmary instead.</p>
     </div>
   </div>
 </section>
 
 <section class="light">
   <div class="wrap">
-    <div class="track"><span class="tk notranslate">T03</span><span class="label">The five hours</span></div>
-    <h2 class="head">Start to finish</h2>
+    <div class="track"><span class="tk notranslate">T03</span><span class="label">Timeline</span></div>
+    <h2 class="head">How the five hours go</h2>
     <p class="sub">Set the castle open time once and every phase switches to your own clock.</p>
 
     <div class="cfg notranslate">
@@ -361,51 +385,51 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
       <article class="ph" data-off="-180">
         <div class="ph-top"><span class="ph-t notranslate">T-3:00</span><h3>Invasion phase</h3><span class="ph-local"></span></div>
         <ul>
-          <li>Staying for the castle? <b>Stay out of fights.</b></li>
-          <li>Snipe unreinforced enemies, then move straight away.</li>
+          <li>If you are staying for the castle, <b>stay out of fights.</b></li>
+          <li>Snipe anyone unreinforced, then move straight away so you do not get caught.</li>
         </ul>
       </article>
       <article class="ph" data-off="-60">
-        <div class="ph-top"><span class="ph-t notranslate">T-1:00</span><h3>Teleport in, take ground</h3><span class="ph-local"></span></div>
+        <div class="ph-top"><span class="ph-t notranslate">T-1:00</span><h3>Teleport in and take ground</h3><span class="ph-local"></span></div>
         <ul>
-          <li>Every alt and farm moves in. Take the tiles near the castle and turrets so they land further out.</li>
-          <li>Rally leads go in last and tight, so march times stay short and even.</li>
-          <li class="no">Never teleport in early. You get moved at random and lose your shield.</li>
+          <li>Move every alt and farm in. Take the tiles near the castle and turrets so they have to land further out.</li>
+          <li>Rally leads go in last and close together, so march times stay short and even.</li>
+          <li class="no">Do not teleport in early, you get moved at random and lose your shield.</li>
         </ul>
       </article>
       <article class="ph" data-off="0">
         <div class="ph-top"><span class="ph-t notranslate">T+0:00</span><h3>Take all four turrets</h3><span class="ph-local"></span></div>
         <ul>
-          <li>Turrets first, castle second. Holders garrison and <b>stay put</b>.</li>
-          <li>Fake rallies start, <b>alts only</b>. Reason is in T06.</li>
+          <li>Take the turrets before the castle. Whoever is assigned garrisons and <b>stays put</b>.</li>
+          <li>Start fake rallies, but <b>alts only</b>. See T06 for why.</li>
         </ul>
       </article>
       <article class="ph" data-off="30">
-        <div class="ph-top"><span class="ph-t notranslate">T+0:30</span><h3>Let the turrets grind them</h3><span class="ph-local"></span></div>
+        <div class="ph-top"><span class="ph-t notranslate">T+0:30</span><h3>Let the turrets do the work</h3><span class="ph-local"></span></div>
         <ul>
-          <li>Bait bases push out reinforced, and taunt. Every swing they take costs them 35%.</li>
-          <li>Call out anyone unreinforced or already wounded.</li>
+          <li>Bait bases move out with reinforcements and start taunting. Every time they attack one it costs them 35%.</li>
+          <li>Call it out if you spot anyone unreinforced or already wounded.</li>
         </ul>
       </article>
       <article class="ph" data-off="90">
-        <div class="ph-top"><span class="ph-t notranslate">T+1:30</span><h3>Take the seat</h3><span class="ph-local"></span></div>
+        <div class="ph-top"><span class="ph-t notranslate">T+1:30</span><h3>Take the castle</h3><span class="ph-local"></span></div>
         <ul>
-          <li>Double rally. First drains, second takes it, third seats the garrison.</li>
-          <li>Land within 5 seconds of each other. Aim for 1 or 2.</li>
-          <li class="no"><b>Hard deadline T+1:45.</b> If they hold 2:30 unbroken the event ends and we lose.</li>
+          <li>Double rally them. The first one drains, the second takes it, the third puts the garrison in.</li>
+          <li>They need to land within 5 seconds of each other, ideally 1 or 2.</li>
+          <li class="no">We need to go in by <b>T+1:45</b> at the latest. If they hold it 2:30 without a break the event ends and we lose.</li>
         </ul>
       </article>
       <article class="ph" data-off="240">
-        <div class="ph-top"><span class="ph-t notranslate">T+4:00</span><h3>Protect the lead</h3><span class="ph-local"></span></div>
+        <div class="ph-top"><span class="ph-t notranslate">T+4:00</span><h3>Hold what we have</h3><span class="ph-local"></span></div>
         <ul>
-          <li>Stop gambling. Keep the turrets. Freshest people hold the last 45 minutes.</li>
-          <li>If their unbroken hold passes 1:45, rally them anyway. One flip resets it to zero.</li>
+          <li>Stop taking risks, keep the turrets, and put whoever is freshest in for the last 45 minutes.</li>
+          <li>If they get past 1:45 of unbroken hold, rally them anyway. Taking it back even briefly resets their timer.</li>
         </ul>
       </article>
       <article class="ph" data-off="300">
         <div class="ph-top"><span class="ph-t notranslate">T+5:00</span><h3>Field Triage</h3><span class="ph-local"></span></div>
         <ul>
-          <li>Revive, ask for help, revive again. Spend your satchels, no reason to bank them.</li>
+          <li>Revive, ask for help, then revive again. Use your satchels, there is no reason to save them.</li>
         </ul>
       </article>
     </div>
@@ -415,26 +439,27 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
 <section class="dark">
   <div class="wrap">
     <div class="track"><span class="tk notranslate">T04</span><span class="label">Turrets</span></div>
-    <h2 class="head">They shoot at whoever holds the castle</h2>
-    <p class="sub">Not defences for the holder. The opposite. That is why we take them first.</p>
+    <h2 class="head">Turrets shoot whoever holds the castle</h2>
+    <p class="sub">They are not there to protect whoever is inside, which is why we want them before we go for the castle.</p>
 
     <div class="tbl">
       <table>
         <thead><tr><th>Turrets held</th><th>What our castle squads get</th></tr></thead>
         <tbody>
           <tr><td class="m">1</td><td><span class="pill">+8% lethality</span>Barely started.</td></tr>
-          <tr><td class="m">2</td><td><span class="pill">+12%</span>Their garrison is bleeding.</td></tr>
-          <tr><td class="m">3</td><td><span class="pill">+15%</span>Rally the castle around now.</td></tr>
-          <tr><td class="m">4</td><td><span class="pill">+20%</span>They cannot hold. Take the seat.</td></tr>
+          <tr><td class="m">2</td><td><span class="pill">+12%</span>They are starting to lose troops.</td></tr>
+          <tr><td class="m">3</td><td><span class="pill">+15%</span>Good point to rally the castle.</td></tr>
+          <tr><td class="m">4</td><td><span class="pill">+20%</span>They will not hold, go and take it.</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="callout hot">
-      <div class="big">Tenure resets the moment you lose one</div>
-      <p>A turret starts slow and speeds up to roughly a shot a minute, about 2% of the castle garrison each time.
-        Their cheapest counter is a throwaway march that flips one and resets its clock, so <b>defending turrets
-        matters more than taking new ones</b>. Four people stay parked beside their turret to take it straight back.</p>
+      <div class="big">Losing a turret resets it</div>
+      <p>A turret starts slow and speeds up to around a shot a minute, taking about 2% of the castle garrison each
+        time. The cheapest thing they can do is send a throwaway march to flip one and reset its clock, so
+        <b>holding the turrets we already have matters more than grabbing extra ones</b>. Keep four people parked
+        next to their turret ready to take it back.</p>
     </div>
   </div>
 </section>
@@ -443,14 +468,14 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
   <div class="wrap">
     <div class="track"><span class="tk notranslate">T05</span><span class="label">The seat</span></div>
     <h2 class="head">Garrison and joiners</h2>
-    <p class="sub">Maven holds the seat. This is how everyone else makes that seat strong.</p>
+    <p class="sub">Maven will be holding the castle. This is what everyone else does to make that hold stick.</p>
     <div class="crendiv" aria-hidden="true"></div>
 
     <div class="callout hot">
-      <div class="big">Only named players enter the castle</div>
-      <p>The whole garrison takes its defence bonuses from <b>one player, whoever has the highest stats</b>.
-        A strong attack built player wandering in steals that from Maven and quietly makes everyone worse.
-        Not on the list? Reinforce a turret instead.</p>
+      <div class="big">Only the named players should go into the castle</div>
+      <p>The game gives the whole garrison its defence bonuses from <b>one player, whichever one has the highest
+        stats</b>. If someone built for attack wanders in, they can take that spot from Maven and make everyone
+        in there worse without anyone noticing. If you are not on the list, reinforce a turret instead.</p>
     </div>
 
     <div class="ratios">
@@ -459,21 +484,22 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
         <div class="rbar" role="img" aria-label="60 percent infantry, 20 cavalry, 20 archers">
           <i class="i" style="flex:60">60</i><i class="c" style="flex:20">20</i><i class="a" style="flex:20">20</i>
         </div>
-        <p>Infantry, cavalry, archers. Never drop one to zero or you waste that type's hero skills.</p>
+        <p>Infantry, cavalry, archers. Do not drop any of them to zero or you waste that type's hero skills.</p>
       </div>
       <div class="ratiocard off">
         <div class="rt">Attack preset</div>
         <div class="rbar" role="img" aria-label="50 percent infantry, 20 cavalry, 30 archers">
           <i class="i" style="flex:50">50</i><i class="c" style="flex:20">20</i><i class="a" style="flex:30">30</i>
         </div>
-        <p>Save both before battle day so nobody is dragging sliders mid rally.</p>
+        <p>Save both of these before battle day so nobody is dragging sliders around mid rally.</p>
       </div>
     </div>
 
     <h3 style="font-size:1.45rem;margin-top:2rem;color:var(--ink)">Not everyone sends Chenko</h3>
-    <p style="margin-top:.45rem;color:var(--ink-soft);max-width:58ch">Only your <b>slot 1 hero's first skill</b> counts
-      when you join, and only four joiners count at all. Four of the same hero add up. Four different ones multiply,
-      which is roughly <b>12% more damage for free</b>. Find your group and set that hero.</p>
+    <p style="margin-top:.45rem;color:var(--ink-soft);max-width:58ch">When you join, only the first skill on your
+      <b>slot 1 hero</b> counts, and only four joiners count at all. Four of the same hero just add together, but four
+      different ones multiply, which works out to roughly <b>12% more damage for nothing</b>. Find your group below
+      and set that hero.</p>
 
     <div class="tbl">
       <table>
@@ -481,42 +507,43 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
         <tbody>
           <tr><td class="m">A</td><td><b>Chenko</b></td><td>Attack rallies</td></tr>
           <tr><td class="m">B</td><td><b>Amane</b></td><td>Attack rallies</td></tr>
-          <tr><td class="m">C</td><td><b>Saul</b></td><td>Garrison, best single defensive joiner</td></tr>
+          <tr><td class="m">C</td><td><b>Saul</b></td><td>Garrison, the best single defensive joiner we have</td></tr>
           <tr><td class="m">D</td><td><b>Hilde</b></td><td>Either</td></tr>
           <tr><td class="m">E</td><td><b>Fahd</b></td><td>Garrison</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="margin-top:.9rem;color:var(--ink-soft);font-size:.95rem">Target garrison stack is
-      <b>Saul, Hilde, Chenko, Chenko</b>. Your skill must be maxed or you get skipped entirely. Gear on a joiner does
-      nothing, so never sit a rally out because your gear is weak.</p>
+    <p style="margin-top:.9rem;color:var(--ink-soft);font-size:.95rem">The garrison stack we want is
+      <b>Saul, Hilde, Chenko, Chenko</b>. Your skill needs to be maxed or you get skipped. Gear on a joiner does
+      nothing at all, so do not sit out a rally because you think your gear is bad.</p>
   </div>
 </section>
 
 <section class="dark">
   <div class="wrap">
     <div class="track"><span class="tk notranslate">T06</span><span class="label">Changed</span></div>
-    <h2 class="head">Three calls that changed</h2>
-    <p class="sub">These were in the first version of the plan and are now different.</p>
+    <h2 class="head">Changes from the first draft</h2>
+    <p class="sub">A few things in the original plan turned out to work differently than we thought.</p>
 
     <div class="changed">
       <div class="chg">
         <span class="was notranslate">Was: fake rallies pin their joiners</span>
-        <h3>Fake rallies are alts only</h3>
-        <p>A rally freezes <b>its own joiners</b>, and a defender can pull their garrison march out whenever they
-          like. So fakes trap us, not them. Throwaway accounts only.</p>
+        <h3>Fake rallies should be alts only</h3>
+        <p>A rally locks <b>the people who joined it</b>, and the defender can pull their garrison march out any time
+          they want. So a fake rally ends up tying up our own people more than theirs. Use throwaway accounts for these.</p>
       </div>
       <div class="chg">
         <span class="was notranslate">Was: alts block enemy marches</span>
-        <h3>Alts take tiles, they do not slow marches</h3>
-        <p>Cities do not slow anyone. Only the relic does. But cities do take up tiles, so flooding the close
-          ground still forces them to land further out. Same job, different reason.</p>
+        <h3>Alts take up tiles, they do not slow marches down</h3>
+        <p>Bases do not slow enemy marches down, only the relic does that. They do take up tiles though, so filling
+          the ground near the castle still forces them to land further away.</p>
       </div>
       <div class="chg">
         <span class="was notranslate">Was: KVK clears, Maven moves in</span>
-        <h3>WPK lands the killing blow</h3>
-        <p>If the winning rally's alliance takes the seat, a KVK kill puts <b>KVK</b> on the clock and splits our
-          time in half. KVK softens, WPK finishes. Worth testing on a turret in the first hour.</p>
+        <h3>WPK should be the one that takes the castle</h3>
+        <p>If the castle goes to whichever alliance won the rally, then a KVK rally taking it puts the time on
+          <b>KVK</b> instead of WPK and splits our total in half. So KVK softens them up and WPK finishes it. Worth
+          testing on a turret early on to see how it actually behaves.</p>
       </div>
     </div>
   </div>
@@ -526,8 +553,8 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
 
 <footer>
   <div class="wrap">
-    <p>Castle battle plan for Kingdom of Power, Kingdom 1904. Rules taken from the official Kingshot help pages
-      where possible. If the game contradicts this page, the game is right.</p>
+    <p>Castle battle plan for Kingdom of Power, Kingdom 1904. Most of this comes from the official Kingshot help
+      pages. If the game tells you something different, go with the game.</p>
     <p style="margin-top:.7rem">Put together by <b style="color:var(--brass)">Tex</b>.</p>
     <div class="serieslinks">
       <a href="https://texnottexas.github.io/kingshot-garrison/">How 2 Garrison</a>
