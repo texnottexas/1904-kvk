@@ -313,9 +313,10 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
         sitting in the castle, so we want them before we want the castle.</li>
       <li data-rv>Leave them in the castle for a while and let the turrets wear them down. The longer we hold a
         turret the faster it fires.</li>
-      <li data-rv>Double rally them out, a <b>WPK</b> rally lands it and Maven garrisons. Then we
-        <b>hold it for 2:30 without a break</b>, which ends the event and wins it outright at about T+2:55. No need
-        to be there the full five hours.</li>
+      <li data-rv>Double rally them out, a <b>WPK</b> rally lands it and Maven garrisons. Then we try to
+        <b>hold it for 2:30 without a break</b>, which ends the event outright at about T+2:55 instead of us sitting
+        there for five hours. Holding it that long is a big ask, but every minute counts toward the total anyway, so
+        nothing is wasted if the run gets broken.</li>
       <li data-rv>Everyone not holding something plays bait, so they waste troops attacking our bases. That costs
         them about <b>35%</b> of their losses permanently, ours just go to the infirmary.</li>
       <li data-rv>Do not hold troops back. Everyone gets up to <b>90%</b> of them back after the battle.</li>
@@ -413,12 +414,14 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
     <h2 class="head">How the five hours go</h2>
     <p class="sub">Set the castle open time once and every phase switches to your own clock.</p>
 
-    <div class="cfg notranslate">
-      <div>
-        <label for="t0">Castle opens, your local time</label>
+    <div class="cfg">
+      <div class="notranslate">
+        <label for="t0">Castle opens</label>
         <input id="t0" type="datetime-local" aria-describedby="t0hint">
       </div>
-      <div class="hint" id="t0hint">Saved on your device only.</div>
+      <div class="hint" id="t0hint">Castle battle starts at <b class="notranslate">12:00 UTC</b>, which is
+        <b id="localOpen" class="notranslate">-</b> where you are. Already filled in for the coming Saturday, change
+        it if we get told otherwise.</div>
     </div>
 
     <div class="tl">
@@ -628,11 +631,22 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
   var KEY='ks1904_t0_v1';
   var t0Input=document.getElementById('t0'),phases=[].slice.call(document.querySelectorAll('.ph'));
   var t0=null;
+  function pad(n){return (n<10?'0':'')+n;}
+  function toInput(d){var o=d.getTimezoneOffset()*60000;return new Date(d.getTime()-o).toISOString().slice(0,16);}
+  function defaultT0(){
+    var now=Date.now(), d=new Date();
+    d.setUTCHours(12,0,0,0);
+    for(var i=0;i<8;i++){
+      if(d.getUTCDay()===6 && d.getTime()+5*3600000>now) return d;
+      d.setUTCDate(d.getUTCDate()+1);
+    }
+    return d;
+  }
   function load(){
     var v=null;try{v=localStorage.getItem(KEY);}catch(e){}
     if(v){var d=new Date(parseInt(v,10));
-      if(!isNaN(d.getTime())){t0=d;var off=d.getTimezoneOffset()*60000;
-        t0Input.value=new Date(d.getTime()-off).toISOString().slice(0,16);}}
+      if(!isNaN(d.getTime())){t0=d;t0Input.value=toInput(d);return;}}
+    t0=defaultT0(); t0Input.value=toInput(t0);
   }
   function save(){
     var v=t0Input.value;
@@ -647,8 +661,12 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
       var off=parseInt(p.getAttribute('data-off'),10);
       var next=(i+1<phases.length)?parseInt(phases[i+1].getAttribute('data-off'),10):Infinity;
       var el=p.querySelector('.ph-local');
-      if(el) el.textContent = t0 ? new Date(t0.getTime()+off*60000)
-        .toLocaleString(undefined,{weekday:'short',hour:'2-digit',minute:'2-digit'}) : '';
+      if(el){
+        if(t0){var dt=new Date(t0.getTime()+off*60000);
+          el.textContent = pad(dt.getUTCHours())+':'+pad(dt.getUTCMinutes())+' UTC \u00b7 '
+            + dt.toLocaleString(undefined,{weekday:'short',hour:'2-digit',minute:'2-digit'});
+        } else el.textContent='';
+      }
       p.classList.remove('now','past');
       var b=p.querySelector('.ph-badge'); if(b) b.parentNode.removeChild(b);
       if(mins===null) return;
@@ -659,6 +677,11 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
       } else if(mins>=next){ p.classList.add('past'); }
     });
   }
+  function showLocalOpen(){
+    var el=document.getElementById('localOpen'); if(!el||!t0) return;
+    el.textContent=t0.toLocaleString(undefined,{weekday:'short',hour:'2-digit',minute:'2-digit'});
+  }
+  var _r=render; render=function(){_r();showLocalOpen();};
   t0Input.addEventListener('change',save);
   t0Input.addEventListener('input',save);
   load();render();
