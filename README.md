@@ -9,12 +9,12 @@ what the game itself enforces, and open attacks on player cities during the cast
 ## What it is
 
 A reference card meant to be read on a phone, in a hurry, during a five hour fight. Not a guide.
-Every member should be able to find their own job and the current phase in a few seconds.
+Deliberately short: six sections, about 1,100 words, so people actually read it.
 
 - Live phase tracker. Enter the castle open time once and every phase converts to your local time.
 - Turret ring diagram, because turrets fire *at* whoever holds the castle.
 - Joiner preset groups, so the alliance stops stacking four of the same hero.
-- Honest list of the mechanics this plan assumes but nobody has confirmed in game.
+- A short list of the calls that changed from the first draft of the plan.
 
 ## Build
 
