@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: https://www.gstatic.com https://fonts.gstatic.com https://translate.googleapis.com https://translate.google.com https://www.google.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com https://translate.googleapis.com; script-src 'self' 'unsafe-inline' https://translate.googleapis.com https://translate.google.com https://translate-pa.googleapis.com https://www.gstatic.com; font-src https://fonts.gstatic.com; connect-src 'self' https://translate.googleapis.com https://translate-pa.googleapis.com https://translate.google.com; frame-src 'self' https://translate.google.com https://translate.googleusercontent.com; object-src 'none'; base-uri 'self'; form-action 'none';">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Castle Battle - Kingdom 1904 Field Plan</title>
-<meta name="description" content="Battle plan for the King's Castle during Kingdom of Power. WPK and KVK, Kingdom 1904.">
+<title>Castle Battle - 1904 vs 1907</title>
+<meta name="description" content="Battle plan for the King's Castle during Kingdom of Power. 1904 vs 1907.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23151a24'/%3E%3Cpath d='M8 22V13l3 2 5-5 5 5 3-2v9z' fill='%23d9a03f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,9 +113,33 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .tur b{display:block;font-family:"Saira Condensed";font-weight:800;font-size:clamp(.8rem,3vw,.96rem);color:var(--brass-br)}
 .tur span{display:block;font-family:"JetBrains Mono";font-size:clamp(.46rem,1.7vw,.58rem);color:oklch(0.86 0.02 250)}
 .t1{left:19%;top:19%}.t2{left:81%;top:19%}.t3{left:19%;top:81%}.t4{left:81%;top:81%}
-.tracer{stroke:var(--brass);stroke-width:1.5;stroke-dasharray:5 7;opacity:.55;animation:flow 1.9s linear infinite}
+.frame{--cst-a:oklch(0.52 0.2 26 / .38);--cst-b:oklch(0.28 0.05 25 / .6);--cst-brd:var(--crimson-br);--cst-txt:oklch(0.86 0.09 32)}
+.frame[data-step="2"],.frame[data-step="3"]{--cst-a:oklch(0.745 0.115 80 / .30);--cst-b:oklch(0.26 0.05 70 / .62);--cst-brd:var(--brass);--cst-txt:var(--brass-br)}
+.kc{background:linear-gradient(180deg,var(--cst-a),var(--cst-b));border-color:var(--cst-brd);
+  transition:background .6s var(--ease),border-color .6s var(--ease)}
+.kc span{color:var(--cst-txt);transition:color .6s var(--ease)}
+.tur .box{transition:box-shadow .55s var(--ease)}
+.frame[data-step="0"] .tur .box{box-shadow:0 0 0 2px oklch(0.745 0.115 80 / .55),0 0 20px -3px oklch(0.745 0.115 80 / .85)}
+.tracer{stroke:var(--brass);stroke-width:1.6;stroke-dasharray:5 7;opacity:0;transition:opacity .45s}
+.frame[data-step="1"] .tracer{opacity:.85;animation:flow 1.1s linear infinite}
 @keyframes flow{to{stroke-dashoffset:-24}}
-@media (prefers-reduced-motion:reduce){.tracer{animation:none}}
+.strike{stroke-width:2.6;stroke-linecap:round;opacity:0;stroke-dasharray:30;stroke-dashoffset:30}
+.strike.k{stroke:oklch(0.72 0.12 243)} .strike.w{stroke:var(--brass-br)}
+.frame[data-step="2"] .strike{opacity:1;animation:strike .8s var(--ease) forwards}
+.frame[data-step="2"] .strike.w{animation-delay:.42s}
+@keyframes strike{from{stroke-dashoffset:30}to{stroke-dashoffset:0}}
+.holdarc{fill:none;stroke:var(--brass);stroke-width:2.4;opacity:0;transition:opacity .45s;
+  stroke-dasharray:283;stroke-dashoffset:283;transform:rotate(-90deg);transform-origin:50% 50%}
+.frame[data-step="3"] .holdarc{opacity:.9;animation:sweep 2.8s linear infinite}
+@keyframes sweep{from{stroke-dashoffset:283}to{stroke-dashoffset:0}}
+.banner .cap{display:none}
+.frame[data-step="0"] .cap0,.frame[data-step="1"] .cap1,
+.frame[data-step="2"] .cap2,.frame[data-step="3"] .cap3{display:inline}
+.ringdots{display:flex;gap:.4rem;justify-content:center;margin-top:.9rem}
+.ringdots button{width:28px;height:5px;border-radius:99px;border:0;padding:0;cursor:pointer;
+  background:oklch(0.745 0.115 80 / .3);transition:background .3s}
+.ringdots button.on{background:var(--brass)}
+@media (prefers-reduced-motion:reduce){.tracer,.strike,.holdarc{animation:none!important}}
 .banner{position:absolute;z-index:3;bottom:5%;left:50%;transform:translateX(-50%);font-family:"Saira Stencil One";
   font-size:clamp(.58rem,2.1vw,.72rem);letter-spacing:.12em;color:var(--bone);white-space:nowrap;
   background:linear-gradient(180deg,var(--crimson-br),var(--crimson));padding:.34rem 1.05rem;text-transform:uppercase;
@@ -275,25 +299,39 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
     <div class="hero-text">
       <div class="kicker"><img src="assets/logo-kingshot.png" alt="Kingshot"><span class="notranslate">Battle Plan</span></div>
       <h1><span class="small">Kingdom of Power</span><span class="word">Castle Battle</span></h1>
-      <p class="blurb">Occupation time is counted per alliance and it adds up over the whole five hours, so short holds still count.</p>
-      <div class="byline"><span class="seal notranslate">1904</span><span><b>WPK</b> and <b>KVK</b> &middot; we won prep, so we invade &middot; all out, no rules</span></div>
+      <p class="blurb">Hold it two and a half hours without a break and it ends there. Otherwise it comes down to who held it longest, counted per alliance.</p>
+      <div class="byline"><span class="seal notranslate">1904</span><span>vs <b>1907</b> &middot; WPK and KVK &middot; we won prep, so we invade &middot; all out, no rules</span></div>
     </div>
     <div class="hero-art">
-      <div class="frame">
-        <div class="ring" role="img" aria-label="Four turrets surround the King's Castle, all firing inward at whoever occupies it">
+      <div class="frame" id="ringFrame" data-step="0">
+        <div class="ring" role="img" aria-label="The plan in four steps: take the four turrets, let them wear down the enemy garrison, KVK then WPK rally the castle, then hold it for two and a half hours">
           <svg viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="holdarc" cx="50" cy="50" r="45"></circle>
             <line class="tracer" x1="25" y1="25" x2="40" y2="40"></line>
-            <line class="tracer" x1="75" y1="25" x2="60" y2="40" style="animation-delay:.45s"></line>
-            <line class="tracer" x1="25" y1="75" x2="40" y2="60" style="animation-delay:.9s"></line>
-            <line class="tracer" x1="75" y1="75" x2="60" y2="60" style="animation-delay:1.35s"></line>
+            <line class="tracer" x1="75" y1="25" x2="60" y2="40" style="animation-delay:.28s"></line>
+            <line class="tracer" x1="25" y1="75" x2="40" y2="60" style="animation-delay:.56s"></line>
+            <line class="tracer" x1="75" y1="75" x2="60" y2="60" style="animation-delay:.84s"></line>
+            <line class="strike k" x1="4" y1="50" x2="33" y2="50"></line>
+            <line class="strike w" x1="96" y1="50" x2="67" y2="50"></line>
           </svg>
-          <div class="kc"><b>Castle</b><span class="notranslate">takes the fire</span></div>
+          <div class="kc"><b>Castle</b><span class="notranslate">1907</span></div>
           <div class="tur t1"><div class="box"><b class="notranslate">T1</b><span>hold</span></div></div>
           <div class="tur t2"><div class="box"><b class="notranslate">T2</b><span>hold</span></div></div>
           <div class="tur t3"><div class="box"><b class="notranslate">T3</b><span>hold</span></div></div>
           <div class="tur t4"><div class="box"><b class="notranslate">T4</b><span>hold</span></div></div>
         </div>
-        <div class="banner notranslate">All four fire inward</div>
+        <div class="banner">
+          <span class="cap cap0">We take the turrets</span>
+          <span class="cap cap1">Turrets wear them down</span>
+          <span class="cap cap2">KVK weakens, WPK hits</span>
+          <span class="cap cap3">Hold it 2:30 and it ends</span>
+        </div>
+      </div>
+      <div class="ringdots notranslate" id="ringDots" role="group" aria-label="Plan steps">
+        <button type="button" aria-label="Step 1, take the turrets"></button>
+        <button type="button" aria-label="Step 2, turrets wear them down"></button>
+        <button type="button" aria-label="Step 3, KVK weakens and WPK hits"></button>
+        <button type="button" aria-label="Step 4, hold it for 2:30"></button>
       </div>
     </div>
   </div>
@@ -309,17 +347,18 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
     <div class="crendiv" aria-hidden="true"></div>
 
     <ol class="plan">
-      <li data-rv>Take <b>all four turrets</b> as soon as the window opens, and hold them. They shoot at whoever is
-        sitting in the castle, so we want them before we want the castle.</li>
-      <li data-rv>Leave them in the castle for a while and let the turrets wear them down. The longer we hold a
-        turret the faster it fires.</li>
-      <li data-rv>Double rally them out. <b>KVK</b> softens them, <b>WPK</b> lands it and Maven garrisons. Then we try to
-        <b>hold it for 2:30 without a break</b>, which ends the event outright at about T+2:55 instead of us sitting
-        there for five hours. Holding it that long is a big ask, but every minute counts toward the total anyway, so
-        nothing is wasted if the run gets broken.</li>
-      <li data-rv>Everyone not holding something plays bait, so they waste troops attacking our bases. That costs
-        them about <b>35%</b> of their losses permanently, ours just go to the infirmary.</li>
-      <li data-rv>Do not hold troops back. Everyone gets up to <b>90%</b> of them back after the battle.</li>
+      <li data-rv>An hour before it starts, everyone moves into the castle area <b>with shields on</b>. Take the
+        ground near the castle and turrets so they land further out and their formations get broken up.</li>
+      <li data-rv>The moment it opens, <b>take all four turrets</b>. They shoot whoever is in the castle, so they
+        chew through 1907's garrison while we get set up.</li>
+      <li data-rv>Around <b>T+0:20</b> we go for the castle. KVK weakens them, WPK lands the hit, Maven garrisons
+        and the clock starts running.</li>
+      <li data-rv>Hold it <b>2:30 without a break</b> and the event ends around T+2:55, instead of us sitting there
+        all five hours. That is a big ask, but broken or not every minute still counts toward the total.</li>
+      <li data-rv>Everyone not holding something plays bait. They lose about <b>35%</b> of their casualties for good
+        attacking our bases, ours just go to the infirmary.</li>
+      <li data-rv>Do not hold troops back, you get up to <b>90%</b> of them back afterwards. Stay in chat, we will
+        adjust as we go.</li>
     </ol>
 
     <h3 class="why">Why we are doing it that way</h3>
@@ -357,12 +396,12 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
       <table>
         <thead><tr><th>You are</th><th>You do</th></tr></thead>
         <tbody>
-          <tr><td><b>Rally lead</b></td><td>Launch on the castle when called. A <b>WPK</b> rally should be the one that finishes it.</td></tr>
+          <tr><td><b>Rally lead</b></td><td>Launch on the castle when called. <b>KVK</b> weakens them first, <b>WPK</b> lands the one that finishes it.</td></tr>
           <tr><td><b>Garrison</b></td><td>Send garrison heroes and troops to the castle or turrets, then keep resending
             regularly to top your troop capacity back up. Castle garrison should be <b>TG2 or TG3 units only</b>.
             You are not there to get kills.</td></tr>
           <tr><td><b>Joiner</b></td><td>Join with your assigned hero in slot 1. See T05 for which one that is.</td></tr>
-          <tr><td><b>Alt or farm</b></td><td>Take tiles near the castle, act as bait, and call out anything you see.</td></tr>
+          <tr><td><b>Alt or farm</b></td><td>Take tiles near the castle <b>with your shield on</b>, act as bait, and call out anything you see.</td></tr>
           <tr><td><b>Cannot attend</b></td><td>Skip the castle and go invade instead, do as much damage as you can.</td></tr>
         </tbody>
       </table>
@@ -404,8 +443,8 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
         </tbody>
       </table>
     </div>
-    <p style="margin-top:.9rem;color:oklch(0.84 0.03 250);max-width:60ch">The KVK leads are mainly there for when we
-      cannot shift their whale out of the castle any other way, so we double rally them out. Bigger players should be
+    <p style="margin-top:.9rem;color:oklch(0.84 0.03 250);max-width:60ch">KVK and WPK work as a pair on the castle. KVK goes
+      in first to weaken them and WPK lands the hit straight after, so the time lands on WPK's clock. Bigger players should be
       ready to switch alliance if we call for it, and please say yes quickly, because a swap that lands after the
       rally is no use. If you are one of the two flexing across, do not switch while you have a march sitting in a
       rally or garrisoned somewhere, because we do not know yet what that does to the march or to the occupation clock.</p>
@@ -520,8 +559,8 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
         <tbody>
           <tr><td class="m">1</td><td><span class="pill">+8% lethality</span>Barely started.</td></tr>
           <tr><td class="m">2</td><td><span class="pill">+12%</span>They are starting to lose troops.</td></tr>
-          <tr><td class="m">3</td><td><span class="pill">+15%</span>Good point to rally the castle.</td></tr>
-          <tr><td class="m">4</td><td><span class="pill">+20%</span>They will not hold, go and take it.</td></tr>
+          <tr><td class="m">3</td><td><span class="pill">+15%</span>Keep going, we want all four.</td></tr>
+          <tr><td class="m">4</td><td><span class="pill">+20%</span>Full buff. This is when we go for the castle.</td></tr>
         </tbody>
       </table>
     </div>
@@ -626,7 +665,7 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
 
 <footer>
   <div class="wrap">
-    <p>Castle battle plan for Kingdom of Power, Kingdom 1904. Most of this comes from the official Kingshot help
+    <p>Castle battle plan for Kingdom of Power, 1904 vs 1907. Most of this comes from the official Kingshot help
       pages. If the game tells you something different, go with the game.</p>
     <p style="margin-top:.7rem">Put together by <b style="color:var(--brass)">Tex</b>.</p>
     <div class="serieslinks">
@@ -639,6 +678,20 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
 </footer>
 
 <script>
+(function(){
+  var frame=document.getElementById('ringFrame'), dots=document.getElementById('ringDots');
+  if(frame&&dots){
+    var btns=[].slice.call(dots.children), i=0, timer=null;
+    function set(k){i=(k+btns.length)%btns.length;frame.setAttribute('data-step',i);
+      btns.forEach(function(b,j){b.classList.toggle('on',j===i);b.setAttribute('aria-current',j===i?'true':'false');});}
+    btns.forEach(function(b,j){b.addEventListener('click',function(){
+      if(timer){clearInterval(timer);timer=null;} set(j);});});
+    set(0);
+    var mq=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(!(mq&&mq.matches)) timer=setInterval(function(){set(i+1);},3000);
+  }
+})();
+
 (function(){
   var KEY='ks1904_t0_v1';
   var t0Input=document.getElementById('t0'),phases=[].slice.call(document.querySelectorAll('.ph'));
