@@ -1,0 +1,1120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: https://www.gstatic.com https://fonts.gstatic.com https://translate.googleapis.com https://translate.google.com https://www.google.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com https://translate.googleapis.com; script-src 'self' 'unsafe-inline' https://translate.googleapis.com https://translate.google.com https://translate-pa.googleapis.com https://www.gstatic.com; font-src https://fonts.gstatic.com; connect-src 'self' https://translate.googleapis.com https://translate-pa.googleapis.com https://translate.google.com; frame-src 'self' https://translate.google.com https://translate.googleusercontent.com; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Castle Battle Operations Plan</title>
+<meta name="description" content="Operations plan for the King's Castle battle during Kingdom of Power.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23141a26'/%3E%3Cpath d='M8 22V13l3 2 5-5 5 5 3-2v9z' fill='%23d9a03f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* night map ground: ours = brass, theirs = rust, the clock = cold teal */
+  --map:      oklch(0.190 0.028 250);
+  --map-2:    oklch(0.243 0.032 252);
+  --map-3:    oklch(0.300 0.030 254);
+  --map-edge: oklch(0.375 0.032 254);
+  --bone:     oklch(0.945 0.010 250);
+  --bone-2:   oklch(0.820 0.014 250);
+  --dim:      oklch(0.680 0.018 250);
+  --dimmer:   oklch(0.560 0.020 252);
+
+  --ours:     oklch(0.790 0.135 78);
+  --ours-dp:  oklch(0.620 0.115 74);
+  --ours-br:  oklch(0.880 0.110 84);
+  --theirs:   oklch(0.615 0.200 27);
+  --theirs-br:oklch(0.700 0.190 31);
+  --clock:    oklch(0.760 0.115 196);
+  --clock-dp: oklch(0.560 0.095 200);
+
+  --maxw: 1120px;
+  --ease: cubic-bezier(.16,1,.3,1);
+
+  --fs-body: clamp(1rem, 0.96rem + 0.22vw, 1.09rem);
+  --fs-h2:   clamp(1.55rem, 1.15rem + 1.9vw, 2.5rem);
+  --fs-h3:   clamp(1.1rem, 0.98rem + 0.6vw, 1.35rem);
+  --fs-mega: clamp(2.35rem, 1.1rem + 6.4vw, 5.1rem);
+
+  --grid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cg fill='none' stroke='%235b6a86' stroke-width='0.6' opacity='0.30'%3E%3Cpath d='M0 0H96M0 24H96M0 48H96M0 72H96'/%3E%3Cpath d='M0 0V96M24 0V96M48 0V96M72 0V96'/%3E%3C/g%3E%3Cg fill='none' stroke='%235b6a86' stroke-width='1' opacity='0.42'%3E%3Cpath d='M0 0H96V96H0Z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:"Barlow",system-ui,sans-serif;font-size:var(--fs-body);line-height:1.58;color:var(--bone);
+  background:var(--map);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3,h4,.cond{font-family:"Barlow Condensed",sans-serif;font-weight:700;line-height:1.04;text-transform:uppercase;letter-spacing:.01em}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-ligatures:none}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(1rem,4vw,2rem)}
+:focus-visible{outline:2px solid var(--ours);outline-offset:3px;border-radius:4px}
+
+/* ---------- sticky status strip ---------- */
+#strip{position:fixed;top:0;left:0;right:0;z-index:130;display:flex;align-items:center;gap:.55rem;
+  min-height:46px;padding:.4rem clamp(.7rem,3vw,1.4rem);padding-right:clamp(3.4rem,14vw,5.4rem);
+  background:oklch(0.175 0.026 250 / .93);backdrop-filter:blur(9px);
+  border-bottom:1px solid var(--map-3);font-size:.76rem}
+#strip .tick{width:7px;height:7px;border-radius:50%;background:var(--ours);flex:none;
+  box-shadow:0 0 0 0 oklch(0.79 0.135 78 / .6);animation:pip 2.6s var(--ease) infinite}
+@keyframes pip{0%{box-shadow:0 0 0 0 oklch(0.79 0.135 78 / .55)}70%{box-shadow:0 0 0 9px oklch(0.79 0.135 78 / 0)}100%{box-shadow:0 0 0 0 oklch(0.79 0.135 78 / 0)}}
+@media (prefers-reduced-motion:reduce){#strip .tick{animation:none}}
+#stripPhase{font-family:"Barlow Condensed";font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--bone);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#stripClock{margin-left:auto;font-family:"IBM Plex Mono";font-weight:600;color:var(--clock);white-space:nowrap;letter-spacing:-.01em}
+@media(max-width:520px){#stripClock .utclab{display:none}}
+
+/* ---------- language switcher ---------- */
+body{top:0 !important} body > .skiptranslate{display:none !important} .goog-te-banner-frame.skiptranslate{display:none !important}
+#google_translate_element{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.lang-fab{position:fixed;top:23px;right:clamp(.7rem,3vw,1.2rem);z-index:140;transform:translateY(-50%);
+  display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;
+  font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:.8rem;letter-spacing:.08em;
+  color:oklch(0.22 0.03 60);background:linear-gradient(180deg,var(--ours-br),var(--ours));
+  border:1px solid var(--ours-dp);border-radius:999px;padding:.36rem .66rem;
+  box-shadow:0 4px 14px -6px #000a, inset 0 1px 0 #fff6;transition:transform .25s var(--ease)}
+.lang-fab:hover{transform:translateY(calc(-50% - 1px))}
+.lang-fab .flag{font-size:1rem;line-height:1}
+@media(max-width:600px){.lang-fab .code{display:none}.lang-fab{padding:.45rem .5rem}}
+.lang-overlay{display:none;position:fixed;inset:0;z-index:210;background:oklch(0.12 0.02 250 / .78);
+  backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1.2rem}
+.lang-overlay.active{display:flex}
+.lang-dialog{border-radius:14px;padding:1.3rem;max-width:440px;width:100%;max-height:82vh;overflow-y:auto;
+  background:linear-gradient(180deg,var(--map-2),var(--map));border:1px solid var(--map-edge);box-shadow:0 30px 60px -24px #000c}
+.lang-dialog-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.lang-dialog-head h3{font-size:1.05rem;letter-spacing:.08em;color:var(--bone)}
+.lang-close{background:none;border:none;color:var(--dim);font-size:1.25rem;line-height:1;cursor:pointer;padding:.1rem .4rem;border-radius:8px}
+.lang-close:hover{color:var(--theirs-br)}
+.lang-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.45rem}
+@media(max-width:480px){.lang-grid{grid-template-columns:1fr}}
+.lang-opt{display:flex;align-items:center;gap:.55rem;padding:.5rem .65rem;border-radius:9px;
+  border:1px solid var(--map-3);background:oklch(0.26 0.03 252 / .6);cursor:pointer;
+  font-family:"Barlow",sans-serif;font-size:.9rem;color:var(--bone-2);text-align:left;transition:.15s}
+.lang-opt:hover{border-color:var(--ours);color:var(--bone)}
+.lang-opt.active{border-color:var(--ours-dp);background:oklch(0.79 0.135 78 / .16);color:var(--bone)}
+.lang-opt .flag{font-size:1.1rem;line-height:1}.lang-opt .name{flex:1}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:clamp(4.6rem,13vw,7.4rem) 0 clamp(2.2rem,6vw,3.4rem);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:var(--grid);background-size:96px 96px;
+  mask-image:radial-gradient(115% 85% at 50% 12%, #000 12%, transparent 76%);opacity:.7;pointer-events:none}
+.hero-in{position:relative}
+.eyebrow{font-family:"Barlow Condensed";font-weight:700;font-size:.72rem;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--ours);display:flex;align-items:center;gap:.6rem}
+.eyebrow::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--ours-dp),transparent)}
+.thesis{font-family:"Barlow Condensed";font-weight:800;font-size:var(--fs-mega);line-height:.94;
+  text-transform:uppercase;margin:.7rem 0 0;max-width:19ch}
+.thesis .b{color:var(--clock)}
+.hero-sub{margin-top:1rem;max-width:56ch;color:var(--bone-2);font-size:clamp(1rem,.95rem+.35vw,1.16rem)}
+.flags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.4rem}
+.flag-chip{font-family:"Barlow Condensed";font-weight:700;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;
+  padding:.34rem .68rem;border-radius:999px;border:1px solid var(--map-edge);color:var(--bone-2);background:oklch(0.25 0.03 252 / .7)}
+.flag-chip.us{border-color:var(--ours-dp);color:var(--ours-br);background:oklch(0.79 0.135 78 / .12)}
+.flag-chip.hot{border-color:var(--theirs);color:var(--theirs-br);background:oklch(0.615 0.2 27 / .12)}
+
+/* clock bar: the 5 hour window */
+.winbar{margin-top:2rem;max-width:640px}
+.winbar-lab{display:flex;justify-content:space-between;font-family:"IBM Plex Mono";font-size:.7rem;
+  letter-spacing:.04em;color:var(--dim);margin-bottom:.4rem}
+.winbar-track{position:relative;height:34px;border:1px solid var(--map-edge);border-radius:6px;
+  background:repeating-linear-gradient(90deg,oklch(0.25 0.03 252) 0 2px,transparent 2px 24px);overflow:hidden}
+.winbar-fill{position:absolute;inset:0 auto 0 0;width:50%;background:linear-gradient(90deg,oklch(0.76 0.115 196 / .34),oklch(0.76 0.115 196 / .1));
+  border-right:2px solid var(--clock)}
+.winbar-mark{position:absolute;top:0;bottom:0;left:50%;display:flex;align-items:center;padding-left:.5rem;
+  font-family:"IBM Plex Mono";font-weight:600;font-size:.7rem;color:var(--clock);white-space:nowrap}
+.winbar-mark .sm{display:none}
+@media(max-width:620px){.winbar-mark .lg{display:none}.winbar-mark .sm{display:inline}}
+.winbar-note{margin-top:.5rem;font-size:.86rem;color:var(--dim)}
+
+/* ---------- generic section ---------- */
+section{padding:clamp(2.4rem,7vw,4.2rem) 0;border-top:1px solid var(--map-3)}
+.sec-head{display:flex;align-items:baseline;gap:.9rem;margin-bottom:1.5rem}
+.sec-num{font-family:"IBM Plex Mono";font-weight:700;font-size:.8rem;color:var(--ours);flex:none;padding-top:.3rem}
+.sec-head h2{font-size:var(--fs-h2)}
+.sec-intro{max-width:62ch;color:var(--bone-2);margin:-.7rem 0 1.6rem}
+
+/* law cards */
+.laws{display:grid;gap:.9rem;grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+.law{border:1px solid var(--map-3);border-radius:12px;padding:1.15rem;background:linear-gradient(180deg,var(--map-2),oklch(0.215 0.03 251))}
+.law-k{font-family:"IBM Plex Mono";font-weight:700;font-size:.72rem;letter-spacing:.1em;color:var(--ours);margin-bottom:.55rem}
+.law h3{font-size:var(--fs-h3);margin-bottom:.5rem}
+.law p{font-size:.94rem;color:var(--bone-2)}
+.law p+p{margin-top:.55rem}
+.law em{color:var(--bone);font-style:normal;font-weight:600}
+
+/* role finder */
+.roles{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.role{display:block;text-decoration:none;border:1px solid var(--map-edge);border-radius:11px;padding:.85rem .95rem;
+  background:oklch(0.25 0.03 252 / .55);transition:.18s}
+.role:hover{border-color:var(--ours);background:oklch(0.79 0.135 78 / .1);transform:translateY(-2px)}
+.role .rn{font-family:"Barlow Condensed";font-weight:800;font-size:1.02rem;letter-spacing:.05em;text-transform:uppercase;color:var(--bone)}
+.role .rd{font-size:.84rem;color:var(--dim);margin-top:.2rem}
+
+/* ---------- phase timeline ---------- */
+.tl{display:flex;flex-direction:column;gap:.7rem}
+.ph{border:1px solid var(--map-3);border-left:3px solid var(--map-edge);border-radius:0 12px 12px 0;
+  padding:1.05rem 1.15rem;background:linear-gradient(90deg,oklch(0.225 0.03 251),oklch(0.2 0.028 250));transition:.25s}
+.ph.now{border-left-color:var(--ours);background:linear-gradient(90deg,oklch(0.79 0.135 78 / .14),oklch(0.21 0.03 251))}
+.ph.past{opacity:.5}
+.ph-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem .8rem;margin-bottom:.5rem}
+.ph-t{font-family:"IBM Plex Mono";font-weight:700;font-size:.84rem;color:var(--clock);flex:none}
+.ph-top h3{font-size:var(--fs-h3);flex:1 1 auto;min-width:0}
+.ph-local{font-family:"IBM Plex Mono";font-size:.74rem;color:var(--dim);flex:none}
+.ph.now .ph-badge{font-family:"Barlow Condensed";font-weight:800;font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:oklch(0.22 0.03 60);background:var(--ours);border-radius:999px;padding:.16rem .5rem;flex:none}
+.ph ul{list-style:none;display:flex;flex-direction:column;gap:.42rem}
+.ph li{position:relative;padding-left:1.15rem;font-size:.95rem;color:var(--bone-2)}
+.ph li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:1px;
+  background:var(--ours-dp);transform:rotate(45deg)}
+.ph li strong{color:var(--bone);font-weight:600}
+.ph li.no::before{background:var(--theirs)}
+
+/* ---------- turret ring (signature) ---------- */
+.ringwrap{display:grid;gap:clamp(1.4rem,4vw,2.4rem);grid-template-columns:minmax(0,1fr);align-items:center}
+/* grid items default to min-width:auto, so the min-width table inside would blow out the track */
+.ringwrap>*{min-width:0}
+@media(min-width:860px){.ringwrap{grid-template-columns:minmax(0,420px) minmax(0,1fr)}}
+.ring{position:relative;width:100%;max-width:420px;margin-inline:auto;aspect-ratio:1;
+  border:1px solid var(--map-3);border-radius:16px;background:
+    radial-gradient(60% 60% at 50% 50%, oklch(0.245 0.032 252), oklch(0.185 0.026 250)),var(--grid);
+  background-size:auto, 48px 48px}
+.ring svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.ring .kc{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:31%;aspect-ratio:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;
+  border:1px solid var(--theirs);border-radius:10px;background:linear-gradient(180deg,oklch(0.615 0.2 27 / .3),oklch(0.28 0.05 25 / .5))}
+.ring .kc b{font-family:"Barlow Condensed";font-weight:800;font-size:clamp(.9rem,3.4vw,1.15rem);letter-spacing:.06em;color:var(--bone)}
+.ring .kc span{font-family:"IBM Plex Mono";font-size:clamp(.54rem,2vw,.66rem);color:oklch(0.85 0.09 30)}
+.tur{position:absolute;width:25%;transform:translate(-50%,-50%);text-align:center}
+.tur .box{border:1px solid var(--ours-dp);border-radius:9px;padding:.4rem .2rem;
+  background:linear-gradient(180deg,oklch(0.79 0.135 78 / .22),oklch(0.24 0.04 70 / .5))}
+.tur b{display:block;font-family:"Barlow Condensed";font-weight:800;font-size:clamp(.78rem,3vw,.95rem);letter-spacing:.05em;color:var(--ours-br)}
+.tur span{display:block;font-family:"IBM Plex Mono";font-size:clamp(.5rem,1.9vw,.62rem);color:var(--bone-2);margin-top:.05rem;line-height:1.25}
+.tur.t1{left:19%;top:19%}.tur.t2{left:81%;top:19%}.tur.t3{left:19%;top:81%}.tur.t4{left:81%;top:81%}
+.ringcap{margin:.6rem auto 0;max-width:420px;text-align:center;
+  font-family:"IBM Plex Mono";font-size:.66rem;letter-spacing:.06em;color:var(--dimmer)}
+.tracer{stroke:var(--ours);stroke-width:1.4;stroke-dasharray:5 7;opacity:.5;animation:flow 1.9s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-24}}
+@media (prefers-reduced-motion:reduce){.tracer{animation:none}}
+
+.cad{margin-top:1.2rem;border:1px solid var(--map-3);border-radius:12px;padding:1rem 1.1rem;background:var(--map-2)}
+.cad-h{font-family:"Barlow Condensed";font-weight:800;font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ours);margin-bottom:.7rem}
+.cad-scale{display:flex;align-items:center;gap:.4rem;font-family:"IBM Plex Mono";font-size:.72rem;color:var(--bone-2)}
+.cad-scale .seg{flex:1;height:8px;border-radius:2px;background:linear-gradient(90deg,oklch(0.615 0.2 27 / .25),var(--theirs))}
+.cad p{font-size:.9rem;color:var(--bone-2);margin-top:.7rem}
+
+/* ---------- tables ---------- */
+.tbl-scroll{overflow-x:auto;border:1px solid var(--map-3);border-radius:12px;background:var(--map-2)}
+table{width:100%;border-collapse:collapse;min-width:520px;font-size:.92rem}
+caption{text-align:left;padding:.85rem 1rem .1rem;font-family:"Barlow Condensed";font-weight:700;
+  font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ours)}
+th,td{text-align:left;padding:.62rem .85rem;border-bottom:1px solid var(--map-3);vertical-align:top}
+thead th{font-family:"Barlow Condensed";font-weight:700;font-size:.74rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--dim);background:oklch(0.215 0.03 251);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.mono,th.mono{font-family:"IBM Plex Mono";font-size:.85rem}
+.pill{display:inline-block;font-family:"Barlow Condensed";font-weight:700;font-size:.7rem;letter-spacing:.1em;
+  text-transform:uppercase;padding:.14rem .48rem;border-radius:999px;white-space:nowrap}
+.pill.wpk{background:oklch(0.79 0.135 78 / .2);color:var(--ours-br);border:1px solid var(--ours-dp)}
+.pill.kvk{background:oklch(0.76 0.115 196 / .18);color:var(--clock);border:1px solid var(--clock-dp)}
+.pill.anchor{background:oklch(0.615 0.2 27 / .2);color:var(--theirs-br);border:1px solid var(--theirs)}
+
+/* ---------- callouts ---------- */
+.call{border:1px solid var(--map-edge);border-left:3px solid var(--ours);border-radius:0 11px 11px 0;
+  padding:.95rem 1.1rem;background:oklch(0.79 0.135 78 / .09);margin-top:1.3rem}
+.call.warn{border-left-color:var(--theirs);background:oklch(0.615 0.2 27 / .1)}
+.call.cold{border-left-color:var(--clock);background:oklch(0.76 0.115 196 / .09)}
+.call-h{font-family:"Barlow Condensed";font-weight:800;font-size:.74rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ours);margin-bottom:.35rem}
+.call.warn .call-h{color:var(--theirs-br)}
+.call.cold .call-h{color:var(--clock)}
+.call p{font-size:.94rem;color:var(--bone-2)}
+.call p+p{margin-top:.5rem}
+
+/* do / dont */
+.dd{display:grid;gap:.9rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.dd-col{border:1px solid var(--map-3);border-radius:12px;padding:1.1rem;background:var(--map-2)}
+.dd-col h3{font-size:1rem;letter-spacing:.1em;margin-bottom:.75rem}
+.dd-col.yes h3{color:var(--ours-br)}
+.dd-col.no h3{color:var(--theirs-br)}
+.dd-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.dd-col li{position:relative;padding-left:1.4rem;font-size:.93rem;color:var(--bone-2)}
+.dd-col li::before{position:absolute;left:0;top:0;font-family:"IBM Plex Mono";font-weight:700;font-size:.9rem}
+.dd-col.yes li::before{content:"+";color:var(--ours)}
+.dd-col.no li::before{content:"\2212";color:var(--theirs)}
+
+/* priority ladder */
+.ladder{display:flex;flex-direction:column;gap:.55rem;counter-reset:pri}
+.rung{display:flex;gap:.85rem;align-items:flex-start;border:1px solid var(--map-3);border-radius:11px;
+  padding:.85rem 1rem;background:var(--map-2)}
+.rung .pn{counter-increment:pri;font-family:"IBM Plex Mono";font-weight:700;font-size:.9rem;color:var(--ours);flex:none;padding-top:.1rem}
+.rung .pn::before{content:counter(pri)}
+.rung h4{font-size:1rem;margin-bottom:.2rem}
+.rung p{font-size:.9rem;color:var(--bone-2)}
+.rung:first-child{border-color:var(--ours-dp);background:oklch(0.79 0.135 78 / .1)}
+
+/* verify list */
+.vfy{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.vfy li{border:1px dashed var(--map-edge);border-radius:10px;padding:.8rem .95rem;background:oklch(0.22 0.03 251 / .6);font-size:.93rem;color:var(--bone-2)}
+.vfy li strong{color:var(--bone);display:block;font-family:"Barlow Condensed";font-weight:700;
+  font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem}
+
+/* clock config */
+.cfg{display:flex;flex-wrap:wrap;align-items:flex-end;gap:.7rem;border:1px solid var(--map-3);
+  border-radius:12px;padding:1rem 1.1rem;background:var(--map-2)}
+.cfg label{font-family:"Barlow Condensed";font-weight:700;font-size:.72rem;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--dim);display:block;margin-bottom:.3rem}
+.cfg input{background:var(--map);border:1px solid var(--map-edge);border-radius:8px;padding:.5rem .6rem;
+  color:var(--bone);font-family:"IBM Plex Mono";font-size:.9rem;color-scheme:dark}
+.cfg .hint{font-size:.84rem;color:var(--dim);flex:1 1 220px;min-width:0}
+
+/* footer */
+footer{border-top:1px solid var(--map-3);padding:2.4rem 0 3rem;color:var(--dim);font-size:.88rem}
+footer .fnote{max-width:60ch}
+footer a{color:var(--ours);text-decoration:none;border-bottom:1px solid oklch(0.79 0.135 78 / .35)}
+footer a:hover{color:var(--ours-br)}
+.serieslinks{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.serieslinks a{font-family:"Barlow Condensed";font-weight:700;font-size:.74rem;letter-spacing:.1em;
+  text-transform:uppercase;border:1px solid var(--map-edge);border-bottom-color:var(--map-edge);border-radius:999px;
+  padding:.3rem .66rem;color:var(--bone-2)}
+.serieslinks a:hover{border-color:var(--ours);color:var(--ours-br)}
+
+/* reveal */
+[data-rv]{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+[data-rv].in{opacity:1;transform:none}
+[data-rv].d1{transition-delay:.06s}[data-rv].d2{transition-delay:.12s}[data-rv].d3{transition-delay:.18s}
+@media (prefers-reduced-motion:reduce){[data-rv]{opacity:1!important;transform:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div id="strip" class="notranslate" aria-label="Battle status">
+  <span class="tick" aria-hidden="true"></span>
+  <span id="stripPhase">Set the battle time below</span>
+  <span id="stripClock"><span class="utclab">UTC </span><span id="utcNow">--:--</span></span>
+</div>
+
+<button class="lang-fab notranslate" id="langFab" aria-haspopup="dialog" aria-expanded="false" aria-label="Change language">
+  <span class="flag" id="langFlag">🇺🇸</span><span class="code" id="langCode">EN</span>
+</button>
+<div class="lang-overlay" id="langOverlay" role="dialog" aria-modal="true" aria-label="Select language">
+  <div class="lang-dialog">
+    <div class="lang-dialog-head"><h3 class="notranslate">Select Language</h3><button class="lang-close notranslate" id="langClose" aria-label="Close">✕</button></div>
+    <div class="lang-grid" id="langGrid"></div>
+  </div>
+</div>
+<div id="google_translate_element" aria-hidden="true"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap hero-in">
+    <div class="eyebrow">Kingdom of Power &middot; King's Castle</div>
+    <h1 class="thesis">The castle is a <span class="b">stopwatch</span>, not a fortress</h1>
+    <p class="hero-sub">Nobody wins this by surviving one long siege. Occupation time is counted
+      per alliance and it adds up. Short holds count. Giving up a castle you cannot keep, to retake it
+      clean, is a good trade. Run the clock up.</p>
+    <div class="flags">
+      <span class="flag-chip us">WPK + KVK</span>
+      <span class="flag-chip us">We won prep, we invade</span>
+      <span class="flag-chip hot">All out, no rules</span>
+      <span class="flag-chip hot">Open attacks allowed</span>
+      <span class="flag-chip">Season 3 heroes</span>
+    </div>
+
+    <div class="winbar" role="img" aria-label="Five hour window with the two and a half hour instant win threshold at the halfway point">
+      <div class="winbar-lab"><span>CASTLE OPENS</span><span>+5:00 CLOSE</span></div>
+      <div class="winbar-track">
+        <div class="winbar-fill"></div>
+        <div class="winbar-mark notranslate"><span class="lg">2:30 straight = instant win</span><span class="sm">2:30 = win</span></div>
+      </div>
+      <p class="winbar-note">Five hour window. Hold 2:30 unbroken and it ends there.
+        Otherwise the alliance with the most total time wins, even by one minute.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 1. DOCTRINE ============ -->
+<section id="doctrine">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num notranslate">01</span><h2>Three rules that decide everything</h2></div>
+    <p class="sec-intro">Every call in this plan comes from one of these. If you only remember three
+      things, remember these three.</p>
+    <div class="laws">
+      <article class="law" data-rv>
+        <div class="law-k notranslate">RULE 1</div>
+        <h3>The clock belongs to one alliance</h3>
+        <p>Occupation time is tracked <em>per alliance</em>, not per kingdom. Three alliances holding
+          70, 60 and 50 minutes all lose to one alliance holding 75.</p>
+        <p>So one alliance sits in the castle and keeps the clock. Everyone else feeds it.</p>
+      </article>
+      <article class="law d1" data-rv>
+        <div class="law-k notranslate">RULE 2</div>
+        <h3>Structures are cheap, cities are not</h3>
+        <p>Fighting at the castle and turrets sends your casualties to the infirmary. Nothing dies
+          until the infirmary is full.</p>
+        <p>Attacking somebody's city kills <em>35% of your own casualties permanently</em>. That is why
+          we want them attacking us, not the other way round.</p>
+      </article>
+      <article class="law" data-rv>
+        <div class="law-k notranslate">RULE 3</div>
+        <h3>You get up to 90% back</h3>
+        <p>Field Triage returns 30% on its own and up to about 90% with satchels, rescue orders and
+          alliance help.</p>
+        <p>So do not hoard troops. Troops sitting at home win nothing. The only real loss is
+          infirmary overflow.</p>
+      </article>
+    </div>
+
+    <div class="call warn">
+      <div class="call-h notranslate">The one thing that actually costs you</div>
+      <p>Infirmary overflow. Once it is full, 30% of everything further is dead for good and the rest
+        goes to the Enlistment Office for days. Heal in small batches all battle long. Set the heal
+        slider to roughly 30 minutes, hit heal, spam alliance help, repeat. Save speedups for the
+        moment you are actually about to overflow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. FIND YOUR JOB ============ -->
+<section id="jobs">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num notranslate">02</span><h2>Find your job</h2></div>
+    <p class="sec-intro">Pick the one that describes you and read that section first. If you are not
+      sure which one you are, ask in chat before the window opens, not during it.</p>
+    <div class="roles">
+      <a class="role" href="#roster"><span class="rn">Rally lead</span><span class="rd">You launch rallies on the castle</span></a>
+      <a class="role" href="#garrison"><span class="rn">Garrison</span><span class="rd">You sit in the castle or a turret</span></a>
+      <a class="role" href="#presets"><span class="rn">Joiner</span><span class="rd">You join other people's rallies</span></a>
+      <a class="role" href="#screen"><span class="rn">Alt or farm</span><span class="rd">You are a body in the zone</span></a>
+      <a class="role" href="#timeline"><span class="rn">Cannot attend</span><span class="rd">Go invade instead</span></a>
+    </div>
+
+    <div class="call cold">
+      <div class="call-h notranslate">If you can make castle battle, sit out the invasion phase</div>
+      <p>Do not burn troops in the invasion phase if you will be online for the castle window. You
+        will just show up wounded with a full infirmary and be useless when it matters.</p>
+      <p>If you genuinely cannot be online for the castle window, then the invasion phase is your
+        contribution. Go and do as much damage as you can.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. TIMELINE ============ -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num notranslate">03</span><h2>The five hours, in order</h2></div>
+    <p class="sec-intro">Times are shown against castle open. Set your battle time once and the page
+      will mark the live phase and convert everything into your own clock.</p>
+
+    <div class="cfg notranslate">
+      <div>
+        <label for="t0">Castle opens (your local time)</label>
+        <input id="t0" type="datetime-local" aria-describedby="t0hint">
+      </div>
+      <div class="hint" id="t0hint">Stored on your device only. Enter it in your own time zone and
+        every phase below will show your local time.</div>
+    </div>
+
+    <div class="tl" id="tl" style="margin-top:1.1rem">
+
+      <article class="ph" data-off="-180">
+        <div class="ph-top"><span class="ph-t notranslate">T-3:00</span><h3>Invasion phase</h3><span class="ph-local mono"></span></div>
+        <ul>
+          <li>Attending castle battle? <strong>Stay out of fights.</strong> Empty your infirmary and keep it empty.</li>
+          <li>Not attending? This is your window. Go invade and do damage.</li>
+          <li>Snipe unreinforced enemies who look like joiner material, then move immediately. Do not sit still after a hit.</li>
+          <li class="no">Do not chase a target into a cluster. That is how you feed them a free kill.</li>
+        </ul>
+      </article>
+
+      <article class="ph" data-off="-60">
+        <div class="ph-top"><span class="ph-t notranslate">T-1:00</span><h3>Teleport window, take the ground</h3><span class="ph-local mono"></span></div>
+        <ul>
+          <li>Move in every alt, farm and non fighting account we have, the moment safe teleport opens.</li>
+          <li><strong>The job is taking tiles, not blocking marches.</strong> A city does not slow an enemy march. What it does is occupy the tile, so if we own the close ground they have to land further out and march longer.</li>
+          <li>Priority tiles: the ring around the castle and the four turrets, and the ground around our leads. <strong>Take the tiles between the relic and the castle first</strong>, so their remaining approach runs through the slow zone and ours does not.</li>
+          <li>Rally leads teleport in last and tight, so march times to the castle stay short and even.</li>
+          <li class="no">Do not teleport in early. Going in before the window opens gets you randomly relocated and strips your shield.</li>
+        </ul>
+      </article>
+
+      <article class="ph" data-off="0">
+        <div class="ph-top"><span class="ph-t notranslate">T+0:00</span><h3>Take all four turrets</h3><span class="ph-local mono"></span></div>
+        <ul>
+          <li>Turrets first, castle second. This is not optional and it is not the exciting job.</li>
+          <li>Four turrets held gives our castle squads the full lethality bonus and stops turret fire hitting us.</li>
+          <li>Assigned holders garrison and <strong>stay</strong>. Turret value builds the longer you hold it.</li>
+          <li>Fake rallies start now, but <strong>alts only</strong>. See the note below, because this tactic cuts the wrong way if real players join it.</li>
+          <li>Run the two tests in section 11 in the first ten minutes, on a turret, before we go anywhere near the castle.</li>
+        </ul>
+        <div class="call warn" style="margin-top:.9rem">
+          <div class="call-h notranslate">Fake rallies pin us harder than them</div>
+          <p>A rally locks <strong>its own participants</strong> out of sending any other march until it resolves. Nothing stops
+            a defender sitting in the castle from pulling their march out whenever they like. So a fake rally does not trap
+            their garrison. It mostly discourages them from thinning it, while genuinely freezing whoever of ours joined.</p>
+          <p>So: fakes are launched by throwaway and alt accounts with at most one or two alt joiners. Anchors, skill carriers
+            and turret retake cells never touch a fake rally. Make roughly one fake in three look heavy, or they will start
+            reading march sizes and ignoring the alarm.</p>
+        </div>
+      </article>
+
+      <article class="ph" data-off="30">
+        <div class="ph-top"><span class="ph-t notranslate">T+0:30</span><h3>Let the turrets do the work</h3><span class="ph-local mono"></span></div>
+        <ul>
+          <li>Their garrison is now taking fire from every turret we hold, and the fire is speeding up.</li>
+          <li>Bait bases push forward. Reinforce them properly, park them in front of enemy forces, and taunt.</li>
+          <li>Every attack they throw at a bait base costs them 35% of their losses permanently. Ours go to the infirmary.</li>
+          <li>Call out anyone who looks unreinforced or already wounded.</li>
+        </ul>
+      </article>
+
+      <article class="ph" data-off="90">
+        <div class="ph-top"><span class="ph-t notranslate">T+1:30</span><h3>Take the seat and start the clock</h3><span class="ph-local mono"></span></div>
+        <ul>
+          <li>Double rally to move their whale. First rally drains, second rally takes it, third seats the garrison.</li>
+          <li>Rallies must land within 5 seconds of each other. Aim for 1 to 2.</li>
+          <li><strong>A WPK rally lands the killing blow.</strong> KVK softens. See the handoff warning below, it is the difference between banking our time and wasting it.</li>
+          <li>Maven seats the castle garrison the moment it is ours, with the backup anchor going in behind.</li>
+          <li class="no"><strong>Hard deadline: the real assault goes in no later than T+1:45.</strong> No exceptions, even if the turret grind is going beautifully.</li>
+        </ul>
+        <div class="call warn" style="margin-top:.9rem">
+          <div class="call-h notranslate">Why T+1:45 is a hard deadline</div>
+          <p>If they are sitting in the castle they are building toward a 2:30 unbroken hold, which ends the event instantly.
+            If they took it at open, we have to break them before T+2:29 or we simply lose. And on total time, 2:30 is also
+            roughly the break even point, so every minute past T+2:00 that they hold eats our fallback win too.</p>
+          <p>Letting them cook under four turrets is our best softening tool. Just never let it drift past the deadline,
+            and keep one wave in reserve in case the first fails.</p>
+        </div>
+      </article>
+
+      <article class="ph" data-off="240">
+        <div class="ph-top"><span class="ph-t notranslate">T+4:00</span><h3>Protect the lead</h3><span class="ph-local mono"></span></div>
+        <ul>
+          <li>Stop gambling. No speculative rallies that could cost us the seat.</li>
+          <li>Keep the turrets. Losing one late resets its fire rate and gives them a window.</li>
+          <li>If we are behind on total time, this is when everything goes in. If we are ahead, sit on it.</li>
+          <li><strong>Freshest garrisons and emptiest infirmaries go in for the last 45 minutes.</strong> That is when their all in arrives.</li>
+        </ul>
+        <div class="call cold" style="margin-top:.9rem">
+          <div class="call-h notranslate">Clock breaker rally, standing order</div>
+          <p>The moment <em>their</em> unbroken hold passes about 1:45, a reserve rally goes in whether or not it looks
+            winnable. One successful flip, even held for seconds, wipes their consecutive progress back to zero.</p>
+          <p>The clock breaker is staffed by players who are not garrisoned and not in a retake cell, so it never
+            cannibalises the seat.</p>
+        </div>
+      </article>
+
+      <article class="ph" data-off="300">
+        <div class="ph-top"><span class="ph-t notranslate">T+5:00</span><h3>Field Triage</h3><span class="ph-local mono"></span></div>
+        <ul>
+          <li>Revive, then ask for help, then revive again. Help requests are free percentage.</li>
+          <li>Spend satchels and rescue orders. There is no reason to bank them.</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. TURRET RING ============ -->
+<section id="turrets">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num notranslate">04</span><h2>The turret ring</h2></div>
+    <p class="sec-intro">Turrets are not defences for whoever holds the castle. They shoot
+      <em>at</em> whoever holds the castle. That single fact drives the whole opening.</p>
+
+    <div class="ringwrap">
+      <div>
+      <div class="ring" role="img" aria-label="Diagram: four turrets surround the King's Castle, all firing inward at whoever occupies it">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <line class="tracer" x1="24" y1="24" x2="41" y2="41"></line>
+          <line class="tracer" x1="76" y1="24" x2="59" y2="41" style="animation-delay:.45s"></line>
+          <line class="tracer" x1="24" y1="76" x2="41" y2="59" style="animation-delay:.9s"></line>
+          <line class="tracer" x1="76" y1="76" x2="59" y2="59" style="animation-delay:1.35s"></line>
+        </svg>
+        <div class="kc"><b>Castle</b><span class="notranslate">takes the fire</span></div>
+        <div class="tur t1"><div class="box"><b class="notranslate">T1</b><span>hold</span></div></div>
+        <div class="tur t2"><div class="box"><b class="notranslate">T2</b><span>hold</span></div></div>
+        <div class="tur t3"><div class="box"><b class="notranslate">T3</b><span>hold</span></div></div>
+        <div class="tur t4"><div class="box"><b class="notranslate">T4</b><span>hold</span></div></div>
+      </div>
+      <p class="ringcap">All four turrets fire inward. The relic sits in this zone and slows any march passing it.</p>
+      </div>
+
+      <div>
+        <div class="cad">
+          <div class="cad-h notranslate">Fire rate climbs the longer you hold</div>
+          <div class="cad-scale notranslate">
+            <span>4 min</span><span class="seg" aria-hidden="true"></span><span>1 min</span>
+          </div>
+          <p>A turret starts slow and speeds up to roughly one shot a minute, taking about 2% of the
+            castle garrison each shot. All four is about 8% a cycle, which nobody heals through.</p>
+          <p><strong>Tenure resets if you lose it, even for a second.</strong> Their cheapest counter to
+            this whole plan is a throwaway march that flips a turret and resets the clock on it. Which
+            means defending turrets matters more than taking new ones.</p>
+        </div>
+
+        <div class="tbl-scroll" style="margin-top:1.1rem">
+          <table>
+            <caption>Turrets held, and what our castle squads get</caption>
+            <thead><tr><th>Turrets</th><th>Lethality</th><th>What it means</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1</td><td class="mono">+8%</td><td>Barely started. Keep pushing.</td></tr>
+              <tr><td class="mono">2</td><td class="mono">+12%</td><td>Their garrison is now bleeding.</td></tr>
+              <tr><td class="mono">3</td><td class="mono">+15%</td><td>Rally the castle around now.</td></tr>
+              <tr><td class="mono">4</td><td class="mono">+20%</td><td>They cannot hold. Take the seat.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="call">
+          <div class="call-h notranslate">In KvK this is kingdom wide</div>
+          <p>Turret control counts at kingdom level, not alliance level. Any of our alliances holding a
+            turret still buffs whoever of ours is in the castle, and still stops that turret firing on
+            them. So turret holders do not need to be in the clock alliance. Use everyone.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2rem;font-size:var(--fs-h3)">Four retake cells, one per turret</h3>
+    <p class="sec-intro" style="margin-top:.7rem">Once we hold the castle, flipping one of our turrets is the
+      cheapest thing they can do to us. Assume they work that out and make it their main effort.</p>
+    <ul class="vfy">
+      <li><strong>Retake inside 4 minutes</strong>A freshly flipped turret starts on the slow cadence, so a fast
+        retake costs our seat about one volley. Every minute after that gets worse as it speeds up.</li>
+      <li><strong>One cell per turret, staged next to it</strong>Independent cells, because flipping two turrets at
+        once is their best play and serialised responses will not cover it.</li>
+      <li><strong>Cells are ring fenced</strong>Retake members are never in fake rallies, never skill carriers,
+        never garrisoned somewhere else. They sit there looking bored on purpose.</li>
+      <li><strong>Route around the relic</strong>Time a test march past it early so we know the real slow radius
+        before it costs us a retake.</li>
+      <li><strong>Staff them properly</strong>Not whales, not pure alts. An alt only turret folds to any real rally
+        and hands them a free reset lever.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 5. ROSTER ============ -->
+<section id="roster">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num notranslate">05</span><h2>Who does what</h2></div>
+    <p class="sec-intro">WPK and KVK are the two castle alliances. Everyone active who reads chat
+      belongs in one of them. Non readers and inactive accounts get moved out before the window.</p>
+
+    <div class="tbl-scroll">
+      <table>
+        <caption>Rally leads and the castle seat</caption>
+        <thead><tr><th>Player</th><th>Alliance</th><th>Job</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Maven</strong></td><td><span class="pill wpk">WPK</span></td><td>Rally lead, then <span class="pill anchor">castle garrison</span> once the seat is ours</td></tr>
+          <tr><td>Spartan</td><td><span class="pill wpk">WPK</span></td><td>Rally lead</td></tr>
+          <tr><td>Whispering</td><td><span class="pill wpk">WPK</span></td><td>Rally lead</td></tr>
+          <tr><td>FTH</td><td><span class="pill wpk">WPK</span></td><td>Rally lead</td></tr>
+          <tr><td>Tex</td><td><span class="pill kvk">KVK</span></td><td>Rally lead, whale removal</td></tr>
+          <tr><td>BaldKi</td><td><span class="pill kvk">KVK</span></td><td>Rally lead, whale removal</td></tr>
+          <tr><td>Teehee</td><td><span class="pill kvk">KVK</span></td><td>Rally lead, whale removal</td></tr>
+          <tr><td>DrL</td><td><span class="pill kvk">KVK</span></td><td>Rally lead, whale removal</td></tr>
+          <tr><td>Mons</td><td><span class="pill kvk">KVK</span></td><td>Rally lead, whale removal</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call cold">
+      <div class="call-h notranslate">KVK is the hammer, WPK holds the clock</div>
+      <p>KVK leads exist mainly to shift their whale out of the castle when we cannot move them any other
+        way. WPK takes the seat and holds it, so all our occupation time lands on one ledger.</p>
+      <p>Bigger players stay ready to switch alliance when called. Say yes fast, because the swap is
+        worthless if it lands after the rally.</p>
+    </div>
+
+    <div class="call warn">
+      <div class="call-h notranslate">The handoff is the biggest hole in this plan</div>
+      <p>If taking the castle gives occupancy to the winning rally's alliance, then a KVK rally that clears
+        the seat puts <em>KVK</em> on the clock, and the swap over to WPK opens a vacancy for them to snipe.
+        Two alliances each banking half the time is exactly how you dominate a battle and still lose it.</p>
+      <p><strong>Preferred:</strong> KVK softens, a WPK rally lands last, so the clock starts on WPK.
+        <strong>If KVK has to finish it:</strong> rehearse the handoff on a turret in the first hour. Flip it
+        with a KVK rally, watch exactly how occupancy transfers, and time the WPK march to land the moment
+        KVK steps out. Do not discover this at the castle at T+2:00.</p>
+    </div>
+
+    <div class="call cold">
+      <div class="call-h notranslate">Count the roles before battle day, not during</div>
+      <p>Five structures to hold, and each one wants an anchor plus four skill carriers plus a spare carrier.
+        That is about <strong>30 named people</strong>, and then four retake cells, the rally squads and the clock
+        breaker on top.</p>
+      <p>None of those roles can double up, because you only get one structure each and a rally locks you out of
+        everything else. If we have not filled every slot by name in advance, we will be improvising the most
+        important part of the battle live.</p>
+    </div>
+
+    <div class="call warn">
+      <div class="call-h notranslate">Nobody switches alliance mid march</div>
+      <p>Do not change alliance while you have a march garrisoned or sitting in a rally. We do not know what
+        that does to the march or to the occupation clock, and the castle window is the wrong place to find out.</p>
+      <p>Anyone who switches into WPK reinforces turrets or joins rallies. They do not enter the castle
+        without a leader clearing it first, for the reason in the next section.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. GARRISON ============ -->
+<section id="garrison">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num notranslate">06</span><h2>Garrison marches</h2></div>
+    <p class="sec-intro">Holding is a different skill from hitting. Read this if you are seated in the
+      castle or on a turret, or if you reinforce one.</p>
+
+    <div class="call warn">
+      <div class="call-h notranslate">One player carries the whole garrison's defence</div>
+      <p>In a garrison fight the game picks <strong>the single player with the highest stat bonuses</strong>
+        as the source of defence bonuses for everyone in that structure. Four other members contribute
+        one hero skill each on top.</p>
+      <p>So the seat is only as strong as its best player. If that player leaves to heal, the whole
+        garrison quietly drops to the next best. Never let the anchor walk out without a replacement
+        already inside.</p>
+    </div>
+
+    <div class="call warn">
+      <div class="call-h notranslate">The castle is a closed list, and this is why</div>
+      <p>Because the game picks the highest stat player, <strong>a strong attack built whale wandering into
+        the castle can silently take the anchor role from Maven</strong> and replace good defensive bonuses with
+        bad ones. Everyone in the seat gets worse and nothing on screen tells you it happened.</p>
+      <p>So only named players enter the castle. If you are not on the list, reinforce a turret or join a
+        rally instead. This is the most likely way we beat ourselves today.</p>
+    </div>
+
+    <h3 style="margin-top:1.8rem;font-size:var(--fs-h3)">The anchor chain</h3>
+    <div class="tbl-scroll" style="margin-top:.8rem">
+      <table>
+        <caption>Three deep, all garrison built, in strict stat order</caption>
+        <thead><tr><th>Slot</th><th>Who</th><th>Where they are</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">A1</td><td><strong>Maven</strong></td><td>In the seat, holding</td></tr>
+          <tr><td class="mono">A2</td><td>Named backup, second highest stats inside</td><td><strong>Inside the garrison from the start</strong>, so the bonuses never gap when A1 rotates out to heal</td></tr>
+          <tr><td class="mono">A3</td><td>Named cold spare</td><td>Shielded and staged near the castle</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="call">
+      <div class="call-h notranslate">Rotating the anchor</div>
+      <p>Overlap, always. The replacement lands and confirms in chat <em>before</em> the tired march leaves.
+        A1 pulls out, batch heals, comes back, and A2 carries the garrison in the meantime.</p>
+      <p>Never rotate the anchor and a skill carrier in the same five minutes. Degrade on one axis at a time.</p>
+    </div>
+
+    <div class="call warn">
+      <div class="call-h notranslate">They will siege the anchor's city instead of the castle</div>
+      <p>The smartest thing they can do is never rally our castle at all, and instead hammer Maven's city to
+        fill Maven's infirmary with home defence wounded. Once that infirmary is full, our castle casualties
+        start dying for real.</p>
+      <p>So anchors either keep a shield up all window, or strip their city entirely so a hit wounds almost
+        nothing. Which of those applies depends on the shield test in section 11. Run it early.</p>
+    </div>
+
+    <h3 style="margin-top:1.8rem;font-size:var(--fs-h3)">Formation</h3>
+    <div class="tbl-scroll" style="margin-top:.8rem">
+      <table>
+        <caption>Presets to save before battle day</caption>
+        <thead><tr><th>Preset</th><th class="mono">Inf</th><th class="mono">Cav</th><th class="mono">Arch</th><th>Use for</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Garrison</strong></td><td class="mono">60%</td><td class="mono">20%</td><td class="mono">20%</td><td>Sitting in the castle or a turret</td></tr>
+          <tr><td><strong>Attack</strong></td><td class="mono">50%</td><td class="mono">20%</td><td class="mono">30%</td><td>Leading or joining a rally</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="call">
+      <div class="call-h notranslate">Never zero a troop type</div>
+      <p>Dropping any type to zero throws away every hero skill tied to that type. 60/20/20 keeps all
+        three live. Bring the highest tier troops you have, because reinforcements fill by tier first.</p>
+    </div>
+
+    <div class="call warn">
+      <div class="call-h notranslate">Top ups must be single type, or we lose our archers</div>
+      <p>Garrisons fill by troop level first, then infantry, then cavalry, then archers. Near the cap that
+        means <strong>everyone sending mixed 60/20/20 top ups quietly squeezes the archers out entirely</strong>,
+        and every archer hero skill in the seat dies with them.</p>
+      <p>So: mixed marches for the first fill while there is plenty of room. After that, named players send
+        <strong>archer only</strong> and <strong>cavalry only</strong> top ups to keep the mix honest.</p>
+    </div>
+
+    <div class="call cold">
+      <div class="call-h notranslate">Know your own two numbers</div>
+      <p>Before the window: your <strong>infirmary capacity</strong>, and how many troops you have
+        <strong>committed</strong> between your garrison march and anything defending at home. If committed
+        is bigger than your infirmary can hold, the excess becomes permanent deaths in a bad hour. Size your
+        garrison march to fit.</p>
+      <p>Personal tripwire at <strong>70% infirmary</strong>. Rotate out, batch heal, rotate back. Do not wait
+        to be told.</p>
+    </div>
+
+    <h3 style="margin-top:1.8rem;font-size:var(--fs-h3)">Holding a turret</h3>
+    <ul class="vfy" style="margin-top:.8rem">
+      <li><strong>Sit still</strong>You are not there for kills. Every minute you hold makes that turret
+        fire faster at their castle. Leaving to chase something throws away everything it has built.</li>
+      <li><strong>Expect reset raids</strong>They will send cheap marches purely to flip your turret and
+        reset its fire rate. Assign real troops, not a token garrison.</li>
+      <li><strong>One structure each</strong>You can hold a turret or the castle, not both. Pick before
+        the window opens so we are not scrambling.</li>
+      <li><strong>Top up after volleys</strong>Refresh your garrison between incoming hits rather than
+        waiting until you are nearly empty.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 7. JOINER PRESETS ============ -->
+<section id="presets">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num notranslate">07</span><h2>Joiner presets, and why not everyone sends Chenko</h2></div>
+    <p class="sec-intro">This is the cheapest free damage available to us and most alliances get it
+      wrong. It costs nothing to fix and it needs to be fixed before the window opens.</p>
+
+    <div class="laws">
+      <article class="law">
+        <div class="law-k notranslate">HOW IT WORKS</div>
+        <h3>Only slot 1, only skill 1</h3>
+        <p>When you join, the game reads <em>the first hero in your lineup, and only that hero's first
+          skill</em>. Nothing else travels. Your gear does not matter.</p>
+        <p>A rally or garrison takes <em>four</em> joiner skills, and only from members whose first skill
+          is maxed. If yours is not maxed you get skipped.</p>
+      </article>
+      <article class="law">
+        <div class="law-k notranslate">WHY IT MATTERS</div>
+        <h3>Same hero stacks worse</h3>
+        <p>Identical heroes add together. Different heroes multiply. Four of the same gives about
+          2.0x. Two plus two of different types gives about 2.25x.</p>
+        <p>That is roughly <em>12% more damage for free</em>, purely from not all sending the same hero.</p>
+      </article>
+    </div>
+
+    <div class="tbl-scroll" style="margin-top:1.4rem">
+      <table>
+        <caption>Pick your group and set that hero in slot 1</caption>
+        <thead><tr><th>Group</th><th>Slot 1 hero</th><th>What it adds</th><th>Send on</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">A</td><td><strong>Chenko</strong></td><td>Damage up</td><td>Attack rallies</td></tr>
+          <tr><td class="mono">B</td><td><strong>Amane</strong></td><td>Damage up, different type to Chenko so it multiplies</td><td>Attack rallies</td></tr>
+          <tr><td class="mono">C</td><td><strong>Saul</strong></td><td>Two defence effects on one skill, the best single garrison joiner</td><td>Garrison</td></tr>
+          <tr><td class="mono">D</td><td><strong>Hilde</strong></td><td>Defence and damage together</td><td>Either</td></tr>
+          <tr><td class="mono">E</td><td><strong>Fahd</strong></td><td>Cuts enemy damage</td><td>Garrison</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="call">
+      <div class="call-h notranslate">Target stacks</div>
+      <p><strong>Garrison:</strong> Saul, Hilde, Chenko, Chenko. Tested in Season 3 against
+        Amadeus / Petra / Marlin attackers and it won clearly, where Saul, Gordon, Gordon, Chenko lost the
+        same fight.</p>
+      <p><strong>Attack rally:</strong> mix Chenko and Amane rather than four Chenkos, and let the rally
+        lead call it if they have scouted the garrison.</p>
+    </div>
+
+    <div class="call warn">
+      <div class="call-h notranslate">A maxed wrong hero is worse than an unmaxed one</div>
+      <p>An unmaxed hero gets skipped, which is harmless. But a <strong>maxed</strong> hero that arrives early
+        <strong>holds that slot for the whole fight</strong>. A third Chenko turning up first does not add a new
+        multiplier, it just pads one that is already there, and it locks out the Hilde that would have opened
+        a fresh one.</p>
+      <p>So entry order matters: <strong>anchor goes in first, then carriers one at a time</strong>, each saying
+        "in" in chat before the next launches. Once four are seated a leader calls <strong>slots locked</strong>,
+        and only then does filler reinforcement go in.</p>
+    </div>
+
+    <div class="call">
+      <div class="call-h notranslate">Carrier rules</div>
+      <p>Carriers do not need gear, so mid sized accounts with the right maxed skill are perfect for it. Do not
+        waste whales here, they are anchors and rally leads.</p>
+      <p>Carriers <strong>never join rallies</strong>, because the rally lock takes them out of circulation, and
+        <strong>never hold a structure of their own</strong>, because you only get one. Keep one spare carrier
+        inside each garrison, and stagger carrier swaps at least five minutes apart.</p>
+    </div>
+
+    <div class="call warn">
+      <div class="call-h notranslate">R4 and R5, before battle day</div>
+      <p>Post the list: player, which garrison, which slot 1 hero, and a fallback hero. Collect a screenshot from
+        each carrier proving the skill is maxed. Verify it, do not take their word, because a wrong slot is
+        invisible once the fight starts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. TARGETS ============ -->
+<section id="targets">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num notranslate">08</span><h2>Who to hit, in order</h2></div>
+    <p class="sec-intro">Kills are not the win condition, so every hit on a person needs a reason.
+      The reason is always "this removes a specific player from the castle fight".</p>
+
+    <div class="ladder">
+      <div class="rung"><span class="pn notranslate"></span><div>
+        <h4>Their garrison anchor</h4>
+        <p>The one player supplying defence bonuses for their whole seat. Wound them, force them home,
+          push them into overflow. The entire garrison drops when they leave. Nothing else you can do
+          is worth this much.</p></div></div>
+      <div class="rung"><span class="pn notranslate"></span><div>
+        <h4>Their castle rally leads</h4>
+        <p>A rally uses nine skills from whoever starts it. Leads are scarce, joiners are not.</p></div></div>
+      <div class="rung"><span class="pn notranslate"></span><div>
+        <h4>Their refill pipeline</h4>
+        <p>Whoever is parked next to the castle topping the garrison back up. Cut the supply and the
+          seat starves.</p></div></div>
+      <div class="rung"><span class="pn notranslate"></span><div>
+        <h4>Anyone already wounded</h4>
+        <p>A near full infirmary means your next hit turns their wounded into permanent dead.</p></div></div>
+    </div>
+
+    <div class="call warn">
+      <div class="call-h notranslate">Do not farm their joiners</div>
+      <p>Only four joiner slots count in any rally or garrison and they are interchangeable. Kill four
+        and the next four fill in identically. You cannot drain a joiner bench, and you pay the 35%
+        death rate to try.</p>
+      <p>Snipe joiner material during the invasion phase when it is cheap and undefended. During the
+        castle window, go for the anchor and the leads.</p>
+    </div>
+
+    <div class="call">
+      <div class="call-h notranslate">Kill points only count near your own level</div>
+      <p>You only score against players whose Town Center is within 3 levels of yours. Check before you
+        commit, or you will spend permanent troops for nothing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. SCREEN AND BAIT ============ -->
+<section id="screen">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num notranslate">09</span><h2>Bodies, bait and noise</h2></div>
+    <p class="sec-intro">If you are an alt, a farm, or you are not strong enough to lead anything, this
+      is your job and it genuinely changes the battle.</p>
+
+    <div class="dd">
+      <div class="dd-col yes">
+        <h3>Do</h3>
+        <ul>
+          <li>Teleport in as soon as the window opens and park where you are told.</li>
+          <li>Surround our rally leads and joiners so enemy marches take longer to reach them.</li>
+          <li>Be a bait base. Take reinforcements, sit in front of their forces, and let them hit you.</li>
+          <li>Taunt. Emoji spam works. Angry players make worse decisions and attack bases they should leave alone.</li>
+          <li>Call out anything you see. Unshielded players, wounded players, marches forming.</li>
+          <li>Keep a random teleport ready and use it to escape.</li>
+        </ul>
+      </div>
+      <div class="dd-col no">
+        <h3>Do not</h3>
+        <ul>
+          <li>Do not solo attack the castle or a turret. You get none of your attack bonuses and they get all of their defence bonuses.</li>
+          <li>Do not sit still after you hit somebody. Move.</li>
+          <li>Do not drop shield unless we have power near you.</li>
+          <li>Do not let your infirmary overflow while you are being farmed. Heal or move.</li>
+          <li>Do not go quiet. A spotted opportunity nobody hears about is worth nothing.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="call">
+      <div class="call-h notranslate">Why bait works here</div>
+      <p>When they attack one of our bases they permanently lose 35% of their casualties. Every swing they take
+        at a properly reinforced bait base is a trade in our favour, and we get up to 90% back afterwards.</p>
+      <p>Expect it to convert against their careless players, not their good ones. Anyone competent scouts,
+        sees the reinforcement and walks away. That is fine. It still costs them tempo and attention.</p>
+    </div>
+
+    <div class="call warn">
+      <div class="call-h notranslate">Bait duty and garrison duty are different people</div>
+      <p>Defending a bait base fills your own infirmary. If you do bait work and then get called into the castle,
+        you arrive with a loaded hospital and become the weak link in the seat. Pick one job for the window.</p>
+      <p>Also, honestly: the 35% figure is confirmed for the <em>attacker</em>. We have not confirmed what the
+        defender loses. Treat "defending is free" as a working assumption until we see the first real report,
+        not a promise.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. COMMS ============ -->
+<section id="comms">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num notranslate">10</span><h2>Talking to each other</h2></div>
+    <p class="sec-intro">Coordination beats power in this event. A mid strength alliance that executes
+      cleanly out holds a stronger one that shows up disorganised.</p>
+    <div class="laws">
+      <article class="law">
+        <div class="law-k notranslate">VOICE</div>
+        <h3>Be in voice</h3>
+        <p>Rally timing in text does not work. Landing inside 5 seconds needs someone counting out loud.</p>
+      </article>
+      <article class="law">
+        <div class="law-k notranslate">CALLS</div>
+        <h3>Say it in this order</h3>
+        <p>Target, who leads, timer length, which hero joiners bring, exact launch time. Say it before
+          launch, not as a correction afterwards.</p>
+      </article>
+      <article class="law">
+        <div class="law-k notranslate">ROUTES</div>
+        <h3>Check the relic</h3>
+        <p>Marches passing the relic slow down badly. Two leads who launch on the same second still
+          land apart if one routed through it. Stand together before launching.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. VERIFY ============ -->
+<section id="verify">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num notranslate">11</span><h2>Check these in game before we commit</h2></div>
+    <p class="sec-intro">Honest list of what this plan assumes but nobody has confirmed. Run the first three
+      on a <strong>turret</strong> in the opening ten minutes, before we commit anything to the castle. Guides
+      get this stuff wrong, including the ones this plan was built from.</p>
+    <ul class="vfy">
+      <li><strong>1. Can two players garrison the same structure</strong>Send two different players' marches into
+        our first captured turret. If the second one bounces, the whole multi player garrison plan collapses to
+        one anchor plus rotation, and the joiner slot work only applies where stacking is actually allowed.
+        Highest impact test we have.</li>
+      <li><strong>2. Who gets occupancy after a winning rally</strong>Flip a turret with a KVK rally and watch
+        whether KVK or the individual holds it. This is what decides whether WPK has to land the killing blow at
+        the castle. Rehearse the handoff here where it is cheap.</li>
+      <li><strong>3. Does a shield survive while you are garrisoned</strong>Determines whether anchors stay
+        bubbled all window or strip their cities instead. Test on a turret holder.</li>
+      <li><strong>4. Real turret cadence</strong>The turret panel shows a live countdown to the next shot. Use the
+        panel, not our 4 minute to 1 minute estimate, and have somebody calling it out during the fight.</li>
+      <li><strong>5. The relic slow radius</strong>Time a march past it so we know how wide the slow zone actually
+        is before it costs us a retake or desyncs a double rally.</li>
+      <li><strong>6. Window length</strong>Tap the King's Castle on the world map and confirm the timer. Our plan
+        assumes a 5 hour window with a 2:30 instant win. That has changed between updates before.</li>
+      <li><strong>7. What a bait defender actually loses</strong>Read the first real bait base report before we
+        promise anyone that defending is free.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="fnote">Castle battle operations plan for Kingdom of Power. Built for WPK and KVK.
+      Mechanics sourced from the official Kingshot help pages plus community testing, and marked above
+      where they are unconfirmed. If something here contradicts what the game tells you, the game wins.</p>
+    <p style="margin-top:.9rem">Put together by <strong>Tex</strong>.</p>
+    <div class="serieslinks">
+      <a href="https://texnottexas.github.io/kingshot-garrison/">How 2 Garrison</a>
+      <a href="https://texnottexas.github.io/kingshot-bear-hunt/">How 2 Bear Hunt</a>
+      <a href="https://texnottexas.github.io/kingshot-gear-guide/">How to Gear</a>
+      <a href="https://texnottexas.github.io/kingshot-rally-capacity/">Rally Capacity</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- live clock, phase highlighting, local times ---------- */
+(function(){
+  var KEY='ksplan_t0_v1';
+  var t0Input=document.getElementById('t0'),utcNow=document.getElementById('utcNow'),
+      stripPhase=document.getElementById('stripPhase'),phases=[].slice.call(document.querySelectorAll('.ph'));
+  var t0=null;
+  function pad(n){return (n<10?'0':'')+n;}
+  function localStr(d){
+    return d.toLocaleString(undefined,{weekday:'short',hour:'2-digit',minute:'2-digit'});
+  }
+  function load(){
+    var v=null;try{v=localStorage.getItem(KEY);}catch(e){}
+    if(v){t0=new Date(parseInt(v,10));
+      if(!isNaN(t0.getTime())){
+        var off=t0.getTimezoneOffset()*60000;
+        t0Input.value=new Date(t0.getTime()-off).toISOString().slice(0,16);
+      }
+    }
+  }
+  function save(){
+    var v=t0Input.value;
+    if(!v){t0=null;try{localStorage.removeItem(KEY);}catch(e){}render();return;}
+    var d=new Date(v);
+    if(isNaN(d.getTime())){return;}
+    t0=d;try{localStorage.setItem(KEY,String(d.getTime()));}catch(e){}
+    render();
+  }
+  function render(){
+    var now=new Date();
+    utcNow.textContent=pad(now.getUTCHours())+':'+pad(now.getUTCMinutes());
+    if(!t0){
+      stripPhase.textContent='Set the battle time in section 03';
+      phases.forEach(function(p){
+        p.classList.remove('now','past');
+        var el=p.querySelector('.ph-local'); if(el) el.textContent='';
+      });
+      return;
+    }
+    var mins=(now-t0)/60000, active=-1;
+    phases.forEach(function(p,i){
+      var off=parseInt(p.getAttribute('data-off'),10);
+      var next=(i+1<phases.length)?parseInt(phases[i+1].getAttribute('data-off'),10):Infinity;
+      var el=p.querySelector('.ph-local');
+      if(el) el.textContent=localStr(new Date(t0.getTime()+off*60000));
+      p.classList.remove('now','past');
+      if(mins>=off&&mins<next){active=i;}
+      else if(mins>=next){p.classList.add('past');}
+    });
+    if(active>=0){
+      var p=phases[active];
+      p.classList.add('now');
+      if(!p.querySelector('.ph-badge')){
+        var b=document.createElement('span');b.className='ph-badge notranslate';b.textContent='Now';
+        p.querySelector('.ph-top').appendChild(b);
+      }
+      var h=p.querySelector('h3');
+      stripPhase.textContent=(h?h.textContent:'')+(mins>=0?'  ·  T+'+Math.floor(mins/60)+':'+pad(Math.floor(mins%60)):'');
+    } else {
+      var first=parseInt(phases[0].getAttribute('data-off'),10);
+      var away=Math.round(first-mins);
+      stripPhase.textContent=away>0?('Starts in '+Math.floor(away/60)+'h '+(away%60)+'m'):'Standing by';
+    }
+  }
+  t0Input.addEventListener('change',save);
+  t0Input.addEventListener('input',save);
+  load();render();
+  setInterval(render,20000);
+})();
+
+/* ---------- reveal ---------- */
+(function(){
+  var els=[].slice.call(document.querySelectorAll('[data-rv]'));
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
+
+<script>
+(function(){
+  var LANGUAGES=[{code:'en',flag:'🇺🇸',name:'English'},{code:'es',flag:'🇪🇸',name:'Español'},{code:'fr',flag:'🇫🇷',name:'Français'},{code:'de',flag:'🇩🇪',name:'Deutsch'},{code:'pt',flag:'🇧🇷',name:'Português'},{code:'it',flag:'🇮🇹',name:'Italiano'},{code:'ru',flag:'🇷🇺',name:'Русский'},{code:'ja',flag:'🇯🇵',name:'日本語'},{code:'ko',flag:'🇰🇷',name:'한국어'},{code:'zh-CN',flag:'🇨🇳',name:'中文'},{code:'ar',flag:'🇸🇦',name:'العربية'},{code:'tr',flag:'🇹🇷',name:'Türkçe'},{code:'vi',flag:'🇻🇳',name:'Tiếng Việt'},{code:'th',flag:'🇹🇭',name:'ไทย'},{code:'hi',flag:'🇮🇳',name:'हिन्दी'},{code:'pl',flag:'🇵🇱',name:'Polski'},{code:'uk',flag:'🇺🇦',name:'Українська'},{code:'id',flag:'🇮🇩',name:'Indonesia'}];
+  var overlay=document.getElementById('langOverlay'),grid=document.getElementById('langGrid'),fab=document.getElementById('langFab'),flagEl=document.getElementById('langFlag'),codeEl=document.getElementById('langCode');
+  function dataFor(code){var base=(code||'en').split('-')[0];for(var i=0;i<LANGUAGES.length;i++){if(LANGUAGES[i].code===code||LANGUAGES[i].code===base)return LANGUAGES[i];}return null;}
+  function detect(){var m=document.cookie.match(/googtrans=\/[a-zA-Z-]{2,5}\/([a-zA-Z-]{2,10})/);return (m&&m[1])?m[1]:'en';}
+  function updateBtn(code){var d=dataFor(code);flagEl.textContent=d?d.flag:'🌐';codeEl.textContent=(d?d.code:code).split('-')[0].toUpperCase();var opts=grid.querySelectorAll('.lang-opt');for(var i=0;i<opts.length;i++)opts[i].classList.toggle('active',opts[i].getAttribute('data-lang')===code);}
+  function applyToCombo(code,delay){var n=0,poll=setInterval(function(){var combo=document.querySelector('.goog-te-combo');if(combo){combo.value=code;combo.dispatchEvent(new Event('change'));clearInterval(poll);updateBtn(code);}if(++n>40){clearInterval(poll);try{sessionStorage.removeItem('pendingLang');}catch(e){}}},delay||200);}
+  window.applyToCombo=applyToCombo;
+  function setBgInert(on){var kids=document.body.children;for(var i=0;i<kids.length;i++){if(kids[i].id==='langOverlay')continue;if(on)kids[i].setAttribute('inert','');else kids[i].removeAttribute('inert');}}
+  function openModal(){overlay.classList.add('active');fab.setAttribute('aria-expanded','true');setBgInert(true);var first=grid.querySelector('.lang-opt')||document.getElementById('langClose');if(first)first.focus();}
+  function closeModal(){overlay.classList.remove('active');fab.setAttribute('aria-expanded','false');setBgInert(false);fab.focus();}
+  function restoreEnglish(){try{sessionStorage.removeItem('pendingLang');}catch(e){}var h=location.hostname;document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax';document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain='+h+'; SameSite=Lax';closeModal();location.reload();}
+  function select(code){if(code==='en'){restoreEnglish();return;}try{sessionStorage.setItem('pendingLang',code);}catch(e){}applyToCombo(code,200);closeModal();}
+  var detected=detect();
+  LANGUAGES.forEach(function(l){var b=document.createElement('button');b.className='lang-opt notranslate'+(l.code===detected?' active':'');b.setAttribute('data-lang',l.code);var f=document.createElement('span');f.className='flag';f.textContent=l.flag;var n=document.createElement('span');n.className='name';n.textContent=l.name;b.appendChild(f);b.appendChild(n);b.addEventListener('click',function(){select(l.code);});grid.appendChild(b);});
+  updateBtn(detected);
+  fab.addEventListener('click',openModal);
+  document.getElementById('langClose').addEventListener('click',closeModal);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeModal();});
+  overlay.addEventListener('keydown',function(e){if(e.key!=='Tab')return;var f=[].slice.call(overlay.querySelectorAll('button')).filter(function(b){return !b.disabled&&b.offsetParent!==null;});if(!f.length)return;var first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('active'))closeModal();});
+})();
+function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'en',autoDisplay:false},'google_translate_element');var pending=null;try{pending=sessionStorage.getItem('pendingLang');sessionStorage.removeItem('pendingLang');}catch(e){}if(pending)window.applyToCombo(pending,250);}
+</script>
+<script src="https://translate.googleapis.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
