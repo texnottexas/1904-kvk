@@ -182,6 +182,8 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 @keyframes pop{0%,43%{opacity:0;transform:scale(.3)}47%{opacity:1;transform:scale(1.15)}
   54%{opacity:1;transform:scale(1)}66%,100%{opacity:0;transform:scale(1.35)}}
 .bonktxt{font-family:"Saira Condensed",sans-serif;font-weight:800;font-size:4.6px;fill:#ffd75e;stroke:none}
+.stklab{font-family:"Saira Condensed",sans-serif;font-weight:700;font-size:3.4px;text-anchor:middle;stroke:none}
+.stklab.us{fill:var(--brass-br)} .stklab.them{fill:oklch(0.74 0.17 31)}
 .chase{transform-box:fill-box;transform-origin:center}
 .frame[data-step="2"] .chase{animation:chase 3s linear infinite}
 @keyframes chase{0%{transform:translate(0,0);opacity:0}8%{opacity:1}
@@ -280,6 +282,38 @@ td .pill{margin-left:.45rem}
 .dark .subhead{color:var(--bone)}
 
 /* ratio bars */
+.ops{display:grid;gap:.9rem;margin-top:1.2rem}
+.op{border:1px solid var(--bone-edge);border-radius:12px;padding:1.05rem 1.15rem;background:oklch(1 0 0 / .55)}
+.op h4{font-family:"Saira Condensed";font-weight:700;text-transform:uppercase;font-size:1.05rem;color:var(--ink);margin-bottom:.3rem}
+.op p{font-size:.95rem;color:var(--ink-soft)}
+.opsteps{margin:.6rem 0;padding:0;list-style:none;counter-reset:os;display:grid;gap:.35rem}
+.opsteps li{counter-increment:os;position:relative;padding-left:1.9rem;font-size:.95rem;color:var(--ink-soft)}
+.opsteps li::before{content:counter(os);position:absolute;left:0;top:.05rem;width:1.35rem;height:1.35rem;
+  border-radius:50%;display:grid;place-items:center;font-family:"JetBrains Mono";font-weight:700;font-size:.72rem;
+  color:#fff;background:var(--steel-dp)}
+details.why{margin-top:1rem;border:1px solid var(--bone-edge);border-radius:12px;background:oklch(1 0 0 / .55)}
+details.why summary{cursor:pointer;padding:.8rem 1rem;font-family:"Saira Condensed";font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em;font-size:.92rem;color:var(--steel-dp);list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:.6rem}
+details.why summary::-webkit-details-marker{display:none}
+details.why summary::after{content:"+";font-family:"JetBrains Mono";font-weight:700;font-size:1.05rem;flex:none}
+details.why[open] summary::after{content:"\2212"}
+details.why .inner{padding:0 1rem 1.1rem;font-size:.93rem;color:var(--ink-soft)}
+details.why h4{font-family:"Saira Condensed";font-weight:700;text-transform:uppercase;font-size:.95rem;
+  color:var(--ink);margin:.95rem 0 .25rem;letter-spacing:.03em}
+details.why p{margin-top:.25rem}
+.tri{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;margin:.6rem 0 .2rem}
+.tri span{font-family:"Saira Condensed";font-weight:700;font-size:.8rem;text-transform:uppercase;
+  letter-spacing:.05em;border-radius:999px;padding:.16rem .55rem;border:1px solid}
+.tri .inf{color:var(--steel-dp);border-color:var(--steel-dp);background:oklch(0.585 0.12 245 / .12)}
+.tri .cav{color:oklch(0.48 0.085 76);border-color:var(--brass-dp);background:oklch(0.745 0.115 80 / .18)}
+.tri .arc{color:var(--crimson);border-color:var(--crimson);background:oklch(0.52 0.205 26 / .1)}
+.tri i{font-style:normal;color:var(--ink-faint);font-family:"JetBrains Mono";font-size:.78rem}
+.trip{font-family:"JetBrains Mono";font-weight:700;font-size:1.15rem;letter-spacing:.02em;margin-bottom:.45rem}
+.trip .z{opacity:.5}
+.trip small{display:block;font-family:"Archivo";font-weight:500;font-size:.7rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-faint);margin-top:.1rem}
+.ratiocard.def .trip{color:var(--steel-dp)} .ratiocard.off .trip{color:var(--crimson)}
 .ratios{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.4rem}
 .ratiocard{border-radius:14px;padding:1.05rem 1.15rem;border:1px solid var(--bone-edge);background:oklch(1 0 0 / .55)}
 .ratiocard .rt{font-family:"Saira Condensed";font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:1rem;margin-bottom:.5rem}
@@ -419,6 +453,8 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
               <g transform="translate(60,86)">
                 <g class="stk us"><circle cx="0" cy="-8.2" r="1.9"/><path d="M0 -6.3V-2.4"/><path d="M0 -5.4 -1.6 -4.2"/><g class="club-arm"><path d="M0 -5.4 2 -6.6"/><path d="M2 -6.6 4.4 -9.2" stroke-width="1.6"/><circle cx="4.4" cy="-9.2" r="1"/></g><path d="M0 -2.4 -1.5 0 M0 -2.4 1.5 0"/></g>
                 <g transform="translate(6.5,0)"><g class="stk them victim"><circle cx="0" cy="-8.2" r="1.9"/><path d="M0 -6.3V-2.4"/><path d="M0 -5.2 -2.1 -7.3 M0 -5.2 2.1 -7.3"/><path d="M0 -2.4 -1.6 0 M0 -2.4 1.6 0"/></g></g>
+                <text class="stklab us" x="-1.8" y="4.4">1904</text>
+                <text class="stklab them" x="8.6" y="4.4">1907</text>
                 <g class="impact">
                   <path d="M6.5 -11 l.9 2 2 .9 -2 .9 -.9 2 -.9 -2 -2 -.9 2 -.9z" fill="#ffd75e" stroke="none"></path>
                   <text class="bonktxt" x="10" y="-12.5">BONK</text>
@@ -426,6 +462,8 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
               </g>
               <g transform="translate(20,40)"><g class="chase">
                 <g class="stk us"><g class="lean-run"><circle cx="0" cy="-8.2" r="1.9"/><path d="M0 -6.3V-2.4"/><path d="M0 -5.4 -1.6 -4.2"/><g class="club-arm"><path d="M0 -5.4 2 -6.6"/><path d="M2 -6.6 4.4 -9.2" stroke-width="1.6"/><circle cx="4.4" cy="-9.2" r="1"/></g><path d="M0 -2.4 -1.5 0 M0 -2.4 1.5 0"/></g></g>
+                <text class="stklab us" x="0" y="4.2">1904</text>
+                <text class="stklab them" x="8" y="4.2">1907</text>
                 <g transform="translate(8,-1)"><g class="stk them"><g class="lean-flee"><circle cx="0" cy="-8.2" r="1.9"/><path d="M0 -6.3V-2.4"/><path d="M0 -5.2 -2.1 -7.3 M0 -5.2 2.1 -7.3"/><path d="M0 -2.4 -1.6 0 M0 -2.4 1.6 0"/></g></g></g>
               </g></g>
             </g>
@@ -742,6 +780,7 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
     <div class="ratios">
       <div class="ratiocard def">
         <div class="rt">Preset 1 &middot; Garrison</div>
+        <div class="trip notranslate">60 / 40 / <span class="z">0</span><small>inf / cav / arch</small></div>
         <div class="rbar" role="img" aria-label="60 percent infantry, 40 percent cavalry, no archers">
           <i class="i" style="flex:60">60</i><i class="c" style="flex:40">40</i>
         </div>
@@ -752,6 +791,7 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
       </div>
       <div class="ratiocard off">
         <div class="rt">Preset 2 &middot; Rally attack</div>
+        <div class="trip notranslate">50 / <span class="z">0</span> / 50<small>inf / cav / arch</small></div>
         <div class="rbar" role="img" aria-label="50 percent infantry, no cavalry, 50 percent archers">
           <i class="i" style="flex:50">50</i><i class="a" style="flex:50">50</i>
         </div>
@@ -769,6 +809,35 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
       <p><b>Save both as presets before battle day.</b> Preset 1 garrison, Preset 2 rally attack, so nobody is
         dragging sliders around while a rally timer is running.</p>
     </div>
+
+    <details class="why">
+      <summary>Why these ratios, if you want the reasoning</summary>
+      <div class="inner">
+        <h4>It all comes off the counter triangle</h4>
+        <div class="tri">
+          <span class="inf">Infantry</span><i>beat</i><span class="cav">Cavalry</span><i>beat</i>
+          <span class="arc">Archers</span><i>beat</i><span class="inf">Infantry</span>
+        </div>
+        <p>When your type counters theirs you deal more and take less. It decides close fights, and matters much less
+          when one side massively outguns the other.</p>
+
+        <h4>Why the garrison drops archers</h4>
+        <p>Archers sit in the back row and have the worst health and defence of the three, so in a garrison they die
+          first and fill our hospitals doing it. The cavalry are in there because the official combat rules say
+          cavalry <b>"sometimes activate skills to directly attack enemy Archers in the back row"</b>. So our cavalry
+          go over their wall and kill the archers actually doing the damage, while our infantry hold the front.</p>
+
+        <h4>Why the attack drops cavalry</h4>
+        <p>Their garrison will be infantry heavy, and archers are the hard counter to infantry. Cavalry are the worst
+          of the three into that, since infantry counter cavalry, so the slot is better spent on more archers.</p>
+
+        <h4>What we are giving up</h4>
+        <p>Zeroing a type means that type's hero skills add nothing to the march, and some guides tell you to keep 5%
+          of each type for exactly that reason. We are taking that trade knowingly, because in a garrison fight the
+          counter matchup is worth more than a partial hero bonus. It is also what the
+          <a href="https://texnottexas.github.io/kingshot-garrison/">garrison guide</a> has said all along.</p>
+      </div>
+    </details>
 
     <h3 style="font-size:1.45rem;margin-top:2rem;color:var(--ink)">Not everyone sends Chenko</h3>
     <p style="margin-top:.45rem;color:var(--ink-soft);max-width:58ch">When you join, the only thing that travels is the
