@@ -150,6 +150,12 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .banner .cap{display:none}
 .frame[data-step="0"] .cap0,.frame[data-step="1"] .cap1,
 .frame[data-step="2"] .cap2,.frame[data-step="3"] .cap3{display:inline}
+figure.fig{margin:1.3rem 0 0;border-radius:12px;overflow:hidden;border:2px solid var(--brass-dp);
+  box-shadow:0 18px 36px -24px #000a;background:var(--night)}
+figure.fig img{width:100%;display:block}
+figure.fig figcaption{background:var(--night);color:oklch(0.88 0.02 250);font-family:"Archivo",sans-serif;
+  font-size:.88rem;padding:.65rem .9rem;line-height:1.4}
+figure.fig figcaption b{color:var(--brass-br)}
 .ops{display:grid;gap:.9rem;margin-top:1.2rem}
 .op{border:1px solid var(--bone-edge);border-radius:12px;padding:1.05rem 1.15rem;background:oklch(1 0 0 / .55)}
 .op h4{font-family:"Saira Condensed";font-weight:700;text-transform:uppercase;font-size:1.05rem;color:var(--ink);margin-bottom:.3rem}
@@ -197,7 +203,7 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .tbl{overflow-x:auto;border-radius:12px;margin-top:1.4rem}
 .dark .tbl{border:1px solid oklch(0.745 0.115 80 / .3)}
 .light .tbl{border:1px solid var(--bone-edge);background:oklch(1 0 0 / .5)}
-table{width:100%;border-collapse:collapse;min-width:340px;font-size:.97rem}
+table{width:100%;border-collapse:collapse;min-width:300px;font-size:.97rem}
 th,td{text-align:left;padding:.7rem .95rem;vertical-align:top}
 thead th{font-family:"Saira Condensed";font-weight:700;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase}
 .dark thead th{color:oklch(0.8 0.05 80);background:oklch(1 0 0 / .05)}
@@ -214,6 +220,10 @@ td.m{font-family:"JetBrains Mono";font-size:.9rem}
 .pill.kvk{border-color:var(--steel);color:oklch(0.78 0.11 243);background:oklch(0.585 0.12 245 / .18)}
 .pill.flex{border-style:dashed;border-color:var(--brass-dp);color:var(--brass-br);background:transparent}
 .dark tbody tr.go td{background:oklch(0.745 0.115 80 / .1)}
+.light .pill.atk{border-color:var(--crimson);color:var(--crimson);background:oklch(0.52 0.205 26 / .1)}
+.light .pill.gar{border-color:var(--steel-dp);color:var(--steel-dp);background:oklch(0.585 0.12 245 / .12)}
+.light .pill.both{border-color:var(--brass-dp);color:oklch(0.48 0.085 76);background:oklch(0.745 0.115 80 / .18)}
+td .pill{margin-left:.45rem}
 .gomark{display:inline-block;margin-left:.45rem;font-family:"Saira Condensed";font-weight:800;font-size:.7rem;
   letter-spacing:.12em;text-transform:uppercase;color:var(--night);background:var(--brass);
   border-radius:999px;padding:.1rem .45rem;vertical-align:middle}
@@ -655,26 +665,40 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
     </div>
 
     <h3 style="font-size:1.45rem;margin-top:2rem;color:var(--ink)">Not everyone sends Chenko</h3>
-    <p style="margin-top:.45rem;color:var(--ink-soft);max-width:58ch">When you join, only the first skill on your
-      <b>slot 1 hero</b> counts, and only four joiners count at all. Four of the same hero just add together, but four
-      different ones multiply, which works out to roughly <b>12% more damage for nothing</b>. Find your group below
-      and set that hero.</p>
+    <p style="margin-top:.45rem;color:var(--ink-soft);max-width:58ch">When you join, the only thing that travels is the
+      <b>Expedition skill in the top right</b> of your <b>slot 1 hero</b>, and <b>its level</b>. Nothing else about that
+      hero matters. Only four joiners count at all, and four of the same hero just add together, while four different
+      ones multiply. That is roughly <b>12% more damage for nothing</b>. Find your group below and set that hero.</p>
+
+    <figure class="fig">
+      <img src="assets/joiner-skill.jpg" width="1000" height="943" loading="lazy"
+           alt="A hero's skill layout with the top right Expedition skill circled in red and its skill level circled in blue">
+      <figcaption>The one circled in red, <b>top right, Expedition</b>, is the only skill the garrison reads.
+        Everything else on the hero is ignored. The level circled in blue is what sets how big the buff is, so get
+        it as high as you can.</figcaption>
+    </figure>
 
     <div class="tbl">
       <table>
-        <thead><tr><th>Group</th><th>Slot 1 hero</th><th>Send on</th></tr></thead>
+        <thead><tr><th>Group</th><th>Slot 1 hero</th><th>What it adds</th></tr></thead>
         <tbody>
-          <tr><td class="m">A</td><td><b>Chenko</b></td><td>Attack rallies</td></tr>
-          <tr><td class="m">B</td><td><b>Amane</b></td><td>Attack rallies</td></tr>
-          <tr><td class="m">C</td><td><b>Saul</b></td><td>Garrison, the best single defensive joiner we have</td></tr>
-          <tr><td class="m">D</td><td><b>Hilde</b></td><td>Either</td></tr>
-          <tr><td class="m">E</td><td><b>Fahd</b></td><td>Garrison</td></tr>
+          <tr><td class="m">A</td><td><b>Chenko</b><span class="pill atk">Attack</span></td><td>Damage</td></tr>
+          <tr><td class="m">B</td><td><b>Amane</b><span class="pill atk">Attack</span></td><td>Damage, a different type to Chenko so the two multiply</td></tr>
+          <tr><td class="m">C</td><td><b>Saul</b><span class="pill gar">Garrison</span></td><td>Two defensive effects on one skill, the best single one we have</td></tr>
+          <tr><td class="m">D</td><td><b>Howard</b><span class="pill gar">Garrison</span></td><td>Defence, a different type to Saul so they stack well together</td></tr>
+          <tr><td class="m">E</td><td><b>Hilde</b><span class="pill both">Either</span></td><td>Defence and damage together</td></tr>
+          <tr><td class="m">F</td><td><b>Fahd</b><span class="pill gar">Garrison</span></td><td>Cuts the damage they deal</td></tr>
+          <tr><td class="m">G</td><td><b>Eric</b><span class="pill gar">Garrison</span></td><td>Defence, strong once the skill is at <b>level 4</b></td></tr>
         </tbody>
       </table>
     </div>
     <p style="margin-top:.9rem;color:var(--ink-soft);font-size:.95rem">The garrison stack we want is
-      <b>Saul, Hilde, Chenko, Chenko</b>. Your skill needs to be maxed or you get skipped. Gear on a joiner does
-      nothing at all, so do not sit out a rally because you think your gear is bad.</p>
+      <b>Saul, Hilde, Chenko, Chenko</b>, with <b>Howard</b> the other strong defensive slot because he stacks
+      well against Saul. <b>Eric</b> is worth a garrison slot too once his skill is at level 4, but not below that.</p>
+    <p style="margin-top:.7rem;color:var(--ink-soft);font-size:.95rem;max-width:58ch">Get that skill level as high as
+      you can, because it sets the size of the buff. Maxed skills also take priority for the four slots, so an unmaxed
+      hero can end up skipped. Gear on a joiner does nothing at all, so do not sit out a rally because you think your
+      gear is bad. Strip the gear off your joiner heroes and give it to the rally leads instead.</p>
 
     <h3 class="subhead">For R4 and R5</h3>
     <p style="margin-top:.45rem;color:var(--ink-soft);max-width:58ch">Two things you will need to do mid fight, so
