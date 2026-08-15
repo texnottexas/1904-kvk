@@ -101,7 +101,7 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .frame{position:relative;border-radius:14px;overflow:hidden;border:3px solid var(--brass-dp);
   box-shadow:0 0 0 6px oklch(0.16 0.01 255), 0 30px 50px -22px #000c;
   --cst-a:oklch(0.52 0.2 26 / .38);--cst-b:oklch(0.28 0.05 25 / .6);--cst-brd:var(--crimson-br);--cst-txt:oklch(0.86 0.09 32)}
-.frame[data-step="2"],.frame[data-step="3"]{--cst-a:oklch(0.745 0.115 80 / .3);--cst-b:oklch(0.26 0.05 70 / .62);--cst-brd:var(--brass);--cst-txt:var(--brass-br)}
+.frame[data-step="1"],.frame[data-step="2"],.frame[data-step="3"]{--cst-a:oklch(0.745 0.115 80 / .3);--cst-b:oklch(0.26 0.05 70 / .62);--cst-brd:var(--brass);--cst-txt:var(--brass-br)}
 .ring{position:relative;aspect-ratio:100/112;
   background:radial-gradient(58% 52% at 50% 50%, oklch(0.30 0.03 252), oklch(0.185 0.02 250))}
 .ring svg{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -112,28 +112,28 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .kc b{font-family:"Saira Condensed";font-weight:800;font-size:clamp(.82rem,3.2vw,1.05rem);letter-spacing:.04em;color:var(--bone)}
 .kc .who{font-family:"JetBrains Mono";font-size:clamp(.44rem,1.65vw,.56rem);color:var(--cst-txt);transition:color .6s var(--ease)}
 .kc .who1{display:none}
-.frame[data-step="2"] .who0,.frame[data-step="3"] .who0{display:none}
-.frame[data-step="2"] .who1,.frame[data-step="3"] .who1{display:block}
+.frame[data-step="1"] .who0,.frame[data-step="2"] .who0,.frame[data-step="3"] .who0{display:none}
+.frame[data-step="1"] .who1,.frame[data-step="2"] .who1,.frame[data-step="3"] .who1{display:block}
 .tnode{transform-box:fill-box;transform-origin:center}
 .tnode rect{fill:oklch(0.24 0.04 70 / .55);stroke:var(--brass-dp);stroke-width:1;
   transition:fill .55s var(--ease),stroke .55s var(--ease)}
 .tnode text{fill:var(--brass-br);font-family:"Saira Condensed",sans-serif;font-weight:800;font-size:6px;
   text-anchor:middle;dominant-baseline:central}
-.frame[data-step="0"] .tnode rect{fill:oklch(0.745 0.115 80 / .3);stroke:var(--brass-br)}
-.frame[data-step="0"] .tnode{animation:tpop .55s var(--ease) both}
-.frame[data-step="0"] .tnode.n2{animation-delay:.1s}
-.frame[data-step="0"] .tnode.n3{animation-delay:.2s}
-.frame[data-step="0"] .tnode.n4{animation-delay:.3s}
+.frame[data-step="1"] .tnode rect{fill:oklch(0.745 0.115 80 / .3);stroke:var(--brass-br)}
+.frame[data-step="1"] .tnode{animation:tpop .55s var(--ease) both}
+.frame[data-step="1"] .tnode.n2{animation-delay:.1s}
+.frame[data-step="1"] .tnode.n3{animation-delay:.2s}
+.frame[data-step="1"] .tnode.n4{animation-delay:.3s}
 @keyframes tpop{0%{opacity:.4;transform:scale(.9)}100%{opacity:1;transform:scale(1)}}
 .tracer{stroke:var(--brass);stroke-width:2;stroke-dasharray:2.6 2.8;stroke-linecap:round;opacity:0;transition:opacity .4s}
-.frame[data-step="1"] .tracer{opacity:.95;animation:flow 1s linear infinite}
-@keyframes flow{to{stroke-dashoffset:-10.8}}
+.frame[data-step="2"] .tracer{opacity:.95;animation:flowout 1s linear infinite}
+@keyframes flowout{to{stroke-dashoffset:10.8}}
 .strikegrp{opacity:0;transition:opacity .35s}
-.frame[data-step="2"] .strikegrp{opacity:1}
-.frame[data-step="2"] .strikegrp.w{transition-delay:.3s}
+.frame[data-step="0"] .strikegrp{opacity:1}
+.frame[data-step="0"] .strikegrp.w{transition-delay:.3s}
 .strike{stroke-width:2.6;stroke-linecap:round;stroke-dasharray:30;stroke-dashoffset:30}
-.frame[data-step="2"] .strike{animation:strike .7s var(--ease) forwards}
-.frame[data-step="2"] .strikegrp.w .strike{animation-delay:.34s}
+.frame[data-step="0"] .strike{animation:strike .7s var(--ease) forwards}
+.frame[data-step="0"] .strikegrp.w .strike{animation-delay:.34s}
 @keyframes strike{to{stroke-dashoffset:0}}
 .slab{font-family:"Saira Condensed",sans-serif;font-weight:800;font-size:6.4px;text-anchor:middle}
 .ssub{font-family:"JetBrains Mono",monospace;font-size:3.9px;text-anchor:middle;fill:oklch(0.80 0.02 250)}
@@ -366,7 +366,7 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
     </div>
     <div class="hero-art">
       <div class="frame" id="ringFrame" data-step="0">
-        <div class="ring" role="img" aria-label="The plan in four steps: take the turrets, let them wear down the 1907 garrison, KVK rallies first with WPK just after, then hold the castle for two and a half hours">
+        <div class="ring" role="img" aria-label="The plan in four steps: KVK rallies the castle first with WPK just after, then we take two turrets, whales harass 1907's joiners, then we hold the castle for two and a half hours">
           <svg viewBox="0 0 100 112" aria-hidden="true">
             <defs>
               <marker id="ahB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse">
@@ -384,10 +384,10 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
             <g class="tnode n2"><rect x="78" y="15.5" width="16" height="11" rx="2.5"></rect><text x="86" y="21">T2</text></g>
             <g class="tnode n3"><rect x="6" y="85.5" width="16" height="11" rx="2.5"></rect><text x="14" y="91">T3</text></g>
             <g class="tnode n4"><rect x="78" y="85.5" width="16" height="11" rx="2.5"></rect><text x="86" y="91">T4</text></g>
-            <line class="tracer" x1="22.5" y1="26.5" x2="33.8" y2="39.8" marker-end="url(#ahT)"></line>
-            <line class="tracer" x1="77.5" y1="26.5" x2="66.2" y2="39.8" marker-end="url(#ahT)" style="animation-delay:.25s"></line>
-            <line class="tracer" x1="22.5" y1="85.5" x2="33.8" y2="72.2" marker-end="url(#ahT)" style="animation-delay:.5s"></line>
-            <line class="tracer" x1="77.5" y1="85.5" x2="66.2" y2="72.2" marker-end="url(#ahT)" style="animation-delay:.75s"></line>
+            <line class="tracer" x1="33.8" y1="39.8" x2="22.5" y2="26.5" marker-end="url(#ahT)"></line>
+            <line class="tracer" x1="66.2" y1="39.8" x2="77.5" y2="26.5" marker-end="url(#ahT)" style="animation-delay:.25s"></line>
+            <line class="tracer" x1="33.8" y1="72.2" x2="22.5" y2="85.5" marker-end="url(#ahT)" style="animation-delay:.5s"></line>
+            <line class="tracer" x1="66.2" y1="72.2" x2="77.5" y2="85.5" marker-end="url(#ahT)" style="animation-delay:.75s"></line>
             <g class="strikegrp k">
               <line class="strike" x1="4" y1="56" x2="33" y2="56" marker-end="url(#ahK)"></line>
               <text class="slab" x="18" y="50">KVK</text>
@@ -402,9 +402,9 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
           <div class="kc"><b>Castle</b><span class="who who0 notranslate">1907</span><span class="who who1 notranslate">ours</span></div>
         </div>
         <div class="banner">
-          <span class="cap cap0">We take the turrets</span>
-          <span class="cap cap1">Turrets wear them down</span>
-          <span class="cap cap2">KVK first, WPK just after</span>
+          <span class="cap cap0">KVK first, WPK just after</span>
+          <span class="cap cap1">Then take two turrets</span>
+          <span class="cap cap2">Whales hunt their joiners</span>
           <span class="cap cap3">Hold it 2:30 and it ends</span>
         </div>
       </div>
