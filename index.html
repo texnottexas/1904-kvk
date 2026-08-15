@@ -150,6 +150,31 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .banner .cap{display:none}
 .frame[data-step="0"] .cap0,.frame[data-step="1"] .cap1,
 .frame[data-step="2"] .cap2,.frame[data-step="3"] .cap3{display:inline}
+.jsplit{display:grid;gap:1rem;grid-template-columns:minmax(0,1fr);margin-top:1.3rem}
+@media(min-width:780px){.jsplit{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.jcard{border-radius:14px;padding:1.05rem 1.15rem;border:2px solid;background:oklch(1 0 0 / .62)}
+.jcard.atk{border-color:var(--crimson)}
+.jcard.gar{border-color:var(--steel-dp)}
+.jhead{display:flex;align-items:center;gap:.55rem;font-family:"Saira Condensed";font-weight:800;
+  text-transform:uppercase;font-size:1.18rem;letter-spacing:.04em}
+.jcard.atk .jhead{color:var(--crimson)}
+.jcard.gar .jhead{color:var(--steel-dp)}
+.jhead svg{width:26px;height:26px;flex:none}
+.jnote{font-size:.9rem;color:var(--ink-faint);margin:.35rem 0 .85rem}
+.jlist{list-style:none;display:grid;gap:.6rem}
+.jlist li{padding-bottom:.6rem;border-bottom:1px dashed var(--bone-edge)}
+.jlist li:last-child{border-bottom:none;padding-bottom:0}
+.jlist .nm{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap}
+.jlist .grp{font-family:"JetBrains Mono";font-size:.72rem;color:#fff;background:var(--ink-faint);
+  border-radius:4px;padding:.05rem .32rem;flex:none}
+.jcard.atk .jlist .grp{background:var(--crimson)}
+.jcard.gar .jlist .grp{background:var(--steel-dp)}
+.jlist .nm b{font-family:"Saira Condensed";font-weight:800;font-size:1.18rem;color:var(--ink);
+  text-transform:uppercase;letter-spacing:.02em}
+.jlist span.d b{font-weight:700;color:var(--ink)}
+.jlist span.d{display:block;font-size:.92rem;color:var(--ink-soft);margin-top:.1rem}
+.bothtag{font-family:"Saira Condensed";font-weight:700;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  color:oklch(0.48 0.085 76);border:1px dashed var(--brass-dp);border-radius:999px;padding:.05rem .42rem}
 figure.fig{margin:1.3rem 0 0;border-radius:12px;overflow:hidden;border:2px solid var(--brass-dp);
   box-shadow:0 18px 36px -24px #000a;background:var(--night)}
 figure.fig img{width:100%;display:block}
@@ -678,20 +703,44 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
         it as high as you can.</figcaption>
     </figure>
 
-    <div class="tbl">
-      <table>
-        <thead><tr><th>Group</th><th>Slot 1 hero</th><th>What it adds</th></tr></thead>
-        <tbody>
-          <tr><td class="m">A</td><td><b>Chenko</b><span class="pill atk">Attack</span></td><td>Damage</td></tr>
-          <tr><td class="m">B</td><td><b>Amane</b><span class="pill atk">Attack</span></td><td>Damage, a different type to Chenko so the two multiply</td></tr>
-          <tr><td class="m">C</td><td><b>Saul</b><span class="pill gar">Garrison</span></td><td>Two defensive effects on one skill, the best single one we have</td></tr>
-          <tr><td class="m">D</td><td><b>Howard</b><span class="pill gar">Garrison</span></td><td>Defence, a different type to Saul so they stack well together</td></tr>
-          <tr><td class="m">E</td><td><b>Hilde</b><span class="pill both">Either</span></td><td>Defence and damage together</td></tr>
-          <tr><td class="m">F</td><td><b>Fahd</b><span class="pill gar">Garrison</span></td><td>Cuts the damage they deal</td></tr>
-          <tr><td class="m">G</td><td><b>Eric</b><span class="pill gar">Garrison</span></td><td>Defence, strong once the skill is at <b>level 4</b></td></tr>
-        </tbody>
-      </table>
+    <div class="jsplit">
+      <div class="jcard atk">
+        <div class="jhead">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4 18 18"/><path d="M20 4 6 18"/><path d="M4 4h4.5v4.5"/><path d="M20 4h-4.5v4.5"/>
+          </svg>
+          <span>Attack</span>
+        </div>
+        <p class="jnote">Bring these when you <b>join a rally</b> on the castle.</p>
+        <ul class="jlist">
+          <li><span class="nm"><span class="grp notranslate">A</span><b>Chenko</b></span><span class="d">Damage.</span></li>
+          <li><span class="nm"><span class="grp notranslate">B</span><b>Amane</b></span><span class="d">Damage, a different type to Chenko, so these two multiply together.</span></li>
+          <li><span class="nm"><span class="grp notranslate">C</span><b>Yeonwoo</b></span><span class="d">Damage, but the <b>same type as Chenko</b>. Bring him if you do not have Chenko built.</span></li>
+          <li><span class="nm"><span class="grp notranslate">H</span><b>Hilde</b><span class="bothtag">works in both</span></span><span class="d">Defence and damage together.</span></li>
+        </ul>
+        <p class="jnote" style="margin:.8rem 0 0">Chenko and Yeonwoo are the same type, so stacking those two together
+          only adds up. <b>Amane is the one that multiplies against them</b>, so a mix of Amane and Chenko beats four
+          of either.</p>
+      </div>
+      <div class="jcard gar">
+        <div class="jhead">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2 20 5v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/>
+          </svg>
+          <span>Garrison</span>
+        </div>
+        <p class="jnote">Bring these when you <b>reinforce the castle or a turret</b>.</p>
+        <ul class="jlist">
+          <li><span class="nm"><span class="grp notranslate">D</span><b>Saul</b></span><span class="d">Two defensive effects on one skill, the best single one we have.</span></li>
+          <li><span class="nm"><span class="grp notranslate">E</span><b>Howard</b></span><span class="d">Defence, a different type to Saul so they stack well together.</span></li>
+          <li><span class="nm"><span class="grp notranslate">F</span><b>Fahd</b></span><span class="d">Cuts the damage they deal.</span></li>
+          <li><span class="nm"><span class="grp notranslate">G</span><b>Eric</b></span><span class="d">Defence, but only worth a slot once the skill is at <b>level 4</b>.</span></li>
+          <li><span class="nm"><span class="grp notranslate">H</span><b>Hilde</b><span class="bothtag">works in both</span></span><span class="d">Defence and damage together.</span></li>
+        </ul>
+      </div>
     </div>
+    <p style="margin-top:.9rem;color:var(--ink-soft);font-size:.95rem;max-width:58ch">
+      <b>R4 and R5 will tell you which letter you are.</b> Do not all bring the same hero, that is the whole point.</p>
     <p style="margin-top:.9rem;color:var(--ink-soft);font-size:.95rem">The garrison stack we want is
       <b>Saul, Hilde, Chenko, Chenko</b>, with <b>Howard</b> the other strong defensive slot because he stacks
       well against Saul. <b>Eric</b> is worth a garrison slot too once his skill is at level 4, but not below that.</p>
