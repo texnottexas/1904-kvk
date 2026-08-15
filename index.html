@@ -146,7 +146,7 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 /* step 0 rally strikes, timing carries "first / just after" */
 .strikegrp{opacity:0;transition:opacity .3s}
 .frame[data-step="0"] .strikegrp{opacity:1}
-.strike{stroke-width:2.6;stroke-linecap:round;stroke-dasharray:30;stroke-dashoffset:30}
+.strike{stroke-width:2.6;stroke-linecap:butt;stroke-dasharray:30;stroke-dashoffset:30}
 .frame[data-step="0"] .strike{animation:strike 3s ease-out infinite}
 .frame[data-step="0"] .strikegrp.w .strike{animation-delay:.8s}
 @keyframes strike{0%{stroke-dashoffset:30}20%,100%{stroke-dashoffset:0}}
@@ -155,7 +155,7 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .strikegrp.w .strike{stroke:var(--brass-br)} .strikegrp.w .slab{fill:var(--brass-br)}
 
 /* step 1 grab arrows */
-.grab{opacity:0;stroke:var(--brass-br);stroke-width:2;stroke-linecap:round;stroke-dasharray:18;stroke-dashoffset:18}
+.grab{opacity:0;stroke:var(--brass-br);stroke-width:2;stroke-linecap:butt;stroke-dasharray:18;stroke-dashoffset:18}
 .frame[data-step="1"] .grab{opacity:1;animation:grab 3s ease-out infinite}
 .frame[data-step="1"] .grab.g2{animation-delay:.18s}
 @keyframes grab{0%{stroke-dashoffset:18}25%,100%{stroke-dashoffset:0}}
@@ -184,12 +184,9 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .bonktxt{font-family:"Saira Condensed",sans-serif;font-weight:800;font-size:4.6px;fill:#ffd75e;stroke:none}
 .stklab{font-family:"Saira Condensed",sans-serif;font-weight:700;font-size:3.4px;text-anchor:middle;stroke:none}
 .stklab.us{fill:var(--brass-br)} .stklab.them{fill:oklch(0.74 0.17 31)}
-.chase{transform-box:fill-box;transform-origin:center}
-.frame[data-step="2"] .chase{animation:chase 3s linear infinite}
-@keyframes chase{0%{transform:translate(0,0);opacity:0}8%{opacity:1}
-  78%{opacity:1}92%,100%{transform:translate(11px,-6px);opacity:0}}
-.lean-run{transform-box:fill-box;transform-origin:50% 100%;transform:rotate(18deg)}
-.lean-flee{transform-box:fill-box;transform-origin:50% 100%;transform:rotate(-16deg)}
+.frame[data-step="2"] .late .club-arm,
+.frame[data-step="2"] .late .victim,
+.frame[data-step="2"] .late .impact{animation-delay:-1.5s}
 
 /* step 3 hold ring around the castle */
 .holdring{fill:none;stroke:var(--brass-br);stroke-width:1.8;opacity:0;transition:opacity .3s;
@@ -459,10 +456,10 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
         <div class="ring" role="img" aria-label="The plan in four steps: KVK rallies the castle first with WPK just after, we take two turrets, our whales hunt 1907's joiners in the field, then we hold the castle for two and a half hours">
           <svg viewBox="0 0 100 112" aria-hidden="true">
             <defs>
-              <marker id="ahB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto-start-reverse">
+              <marker id="ahB" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                 <path d="M0 1 L9 5 L0 9 z" fill="oklch(0.825 0.105 84)"></path>
               </marker>
-              <marker id="ahK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+              <marker id="ahK" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                 <path d="M0 1 L9 5 L0 9 z" fill="oklch(0.72 0.12 243)"></path>
               </marker>
             </defs>
@@ -495,12 +492,13 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
                   <text class="bonktxt" x="10" y="-12.5">BONK</text>
                 </g>
               </g>
-              <g transform="translate(20,40)"><g class="chase">
-                <g class="stk us"><g class="lean-run"><circle cx="0" cy="-8.2" r="1.9"/><path d="M0 -6.3V-2.4"/><path d="M0 -5.4 -1.6 -4.2"/><g class="club-arm"><path d="M0 -5.4 2 -6.6"/><path d="M2 -6.6 4.4 -9.2" stroke-width="1.6"/><circle cx="4.4" cy="-9.2" r="1"/></g><path d="M0 -2.4 -1.5 0 M0 -2.4 1.5 0"/></g></g>
-                <text class="stklab us" x="0" y="4.2">1904</text>
-                <text class="stklab them" x="8" y="4.2">1907</text>
-                <g transform="translate(8,-1)"><g class="stk them"><g class="lean-flee"><circle cx="0" cy="-8.2" r="1.9"/><path d="M0 -6.3V-2.4"/><path d="M0 -5.2 -2.1 -7.3 M0 -5.2 2.1 -7.3"/><path d="M0 -2.4 -1.6 0 M0 -2.4 1.6 0"/></g></g></g>
-              </g></g>
+              <g class="late" transform="translate(22,40)">
+                <g class="stk us"><circle cx="0" cy="-8.2" r="1.9"/><path d="M0 -6.3V-2.4"/><path d="M0 -5.4 -1.6 -4.2"/><g class="club-arm"><path d="M0 -5.4 2 -6.6"/><path d="M2 -6.6 4.4 -9.2" stroke-width="1.6"/><circle cx="4.4" cy="-9.2" r="1"/></g><path d="M0 -2.4 -1.5 0 M0 -2.4 1.5 0"/></g>
+                <text class="stklab us" x="-1.8" y="4.4">1904</text>
+                <text class="stklab them" x="8.6" y="4.4">1907</text>
+                <g transform="translate(6.5,0)"><g class="stk them victim"><circle cx="0" cy="-8.2" r="1.9"/><path d="M0 -6.3V-2.4"/><path d="M0 -5.2 -2.1 -7.3 M0 -5.2 2.1 -7.3"/><path d="M0 -2.4 -1.6 0 M0 -2.4 1.6 0"/></g></g>
+                <g class="impact"><path d="M6.5 -11 l.9 2 2 .9 -2 .9 -.9 2 -.9 -2 -2 -.9 2 -.9z" fill="#ffd75e" stroke="none"></path></g>
+              </g>
             </g>
 
             <circle class="holdring" cx="50" cy="56" r="23" pathLength="100" transform="rotate(-90 50 56)"></circle>
