@@ -741,20 +741,33 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
 
     <div class="ratios">
       <div class="ratiocard def">
-        <div class="rt">Garrison preset</div>
-        <div class="rbar" role="img" aria-label="60 percent infantry, 20 cavalry, 20 archers">
-          <i class="i" style="flex:60">60</i><i class="c" style="flex:20">20</i><i class="a" style="flex:20">20</i>
+        <div class="rt">Preset 1 &middot; Garrison</div>
+        <div class="rbar" role="img" aria-label="60 percent infantry, 40 percent cavalry, no archers">
+          <i class="i" style="flex:60">60</i><i class="c" style="flex:40">40</i>
         </div>
-        <p>Infantry, cavalry, archers. Do not drop any of them to zero or you waste that type's hero skills.
-          <b>Castle garrison is TG2 or TG3 units only.</b> Keep resending to top your capacity back up as you take losses.</p>
+        <p><b>60 infantry, 40 cavalry, no archers.</b> Archers have the worst health and defence in the game, so in a
+          heavy garrison fight they die fast, fill our hospitals and bring the castle down quicker. The infantry are
+          the wall, and the cavalry charge past their frontline to kill the archers sitting at the back of their rally.</p>
+        <p><b>Castle garrison is TG2 or TG3 units only.</b> Keep resending to top your capacity back up as you take losses.</p>
       </div>
       <div class="ratiocard off">
-        <div class="rt">Attack preset</div>
-        <div class="rbar" role="img" aria-label="50 percent infantry, 20 cavalry, 30 archers">
-          <i class="i" style="flex:50">50</i><i class="c" style="flex:20">20</i><i class="a" style="flex:30">30</i>
+        <div class="rt">Preset 2 &middot; Rally attack</div>
+        <div class="rbar" role="img" aria-label="50 percent infantry, no cavalry, 50 percent archers">
+          <i class="i" style="flex:50">50</i><i class="a" style="flex:50">50</i>
         </div>
-        <p>Save both of these before battle day so nobody is dragging sliders around mid rally.</p>
+        <p><b>50 infantry, 50 archers, no cavalry.</b> Archers hard counter infantry, and their garrison will be
+          infantry heavy. Half your march soaks the damage, the other half melts the defenders as fast as possible.</p>
+        <p>The catch: this is weak into a garrison with unusually strong cavalry, since they will cut through the
+          frontline. If a rally lead calls something different, that is why.</p>
       </div>
+    </div>
+
+    <div class="callout hot">
+      <div class="big">Everyone sends the exact ratio the rally lead calls</div>
+      <p>These only work if the whole rally matches. One person sending their own mix drags the combined ratio off
+        and the counter stops working for everybody in it.</p>
+      <p><b>Save both as presets before battle day.</b> Preset 1 garrison, Preset 2 rally attack, so nobody is
+        dragging sliders around while a rally timer is running.</p>
     </div>
 
     <h3 style="font-size:1.45rem;margin-top:2rem;color:var(--ink)">Not everyone sends Chenko</h3>
@@ -846,7 +859,7 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
       <div class="op">
         <h4>Watch the combined ratio</h4>
         <p>The garrison shows one combined troop ratio for everyone inside it, so it drifts as people take losses and
-          resend. Steer it back toward 60/20/20 by asking named people to resend a specific type. Tap the blue arrow
+          resend. Steer it back toward 60/40/0 by asking named people to resend a specific type. Tap the blue arrow
           to the right of someone's name to see what they actually brought.</p>
       </div>
     </div>
