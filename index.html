@@ -139,6 +139,21 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .ssub{font-family:"JetBrains Mono",monospace;font-size:3.9px;text-anchor:middle;fill:oklch(0.80 0.02 250)}
 .strikegrp.k .strike{stroke:oklch(0.72 0.12 243)} .strikegrp.k .slab{fill:oklch(0.78 0.11 243)}
 .strikegrp.w .strike{stroke:var(--brass-br)} .strikegrp.w .slab{fill:var(--brass-br)}
+/* the lads, step 0 only */
+.stickers{opacity:0;transition:opacity .35s}
+.frame[data-step="0"] .stickers{opacity:1}
+.stk{fill:none;stroke-width:1;stroke-linecap:round;transform-box:fill-box;transform-origin:50% 100%}
+.stk circle{stroke:none}
+.stk.us{stroke:var(--brass-br)} .stk.us circle{fill:var(--brass-br)}
+.stk.them{stroke:oklch(0.70 0.19 31)} .stk.them circle{fill:oklch(0.70 0.19 31)}
+.frame[data-step="0"] .stk.us{animation:charge .62s ease-in-out infinite}
+.frame[data-step="0"] .stk.us.b{animation-delay:.14s}
+.frame[data-step="0"] .stk.us.c{animation-delay:.28s}
+.frame[data-step="0"] .stk.them{animation:flee .5s ease-in-out infinite}
+@keyframes charge{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-1.4px) rotate(5deg)}}
+@keyframes flee{0%,100%{transform:translateY(0) rotate(6deg)}50%{transform:translateY(-1.6px) rotate(10deg)}}
+.stklab{font-family:"JetBrains Mono",monospace;font-size:3.6px;text-anchor:middle}
+@media (prefers-reduced-motion:reduce){.stk{animation:none!important}}
 .holdarc{fill:none;stroke:var(--brass);stroke-width:2.4;opacity:0;transition:opacity .4s;
   stroke-dasharray:302;stroke-dashoffset:302}
 .frame[data-step="3"] .holdarc{opacity:.9;animation:sweep 3s linear infinite}
@@ -397,6 +412,30 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
               <line class="strike" x1="96" y1="56" x2="67" y2="56" marker-end="url(#ahB)"></line>
               <text class="slab" x="82" y="50">WPK</text>
               <text class="ssub" x="82" y="63.5">just after</text>
+            </g>
+            <g class="stickers">
+              <g transform="translate(30,92)"><g class="stk us a">
+                <circle cx="0" cy="-8" r="1.5"/><path d="M0 -6.5V-2.4"/>
+                <path d="M0 -5.5-1.8-3.9M0 -5.5 1.9-6.8M1.9-6.8 4-9.1"/>
+                <path d="M0 -2.4-1.5 0M0 -2.4 1.5 0"/>
+              </g></g>
+              <g transform="translate(39,92)"><g class="stk us b">
+                <circle cx="0" cy="-8" r="1.5"/><path d="M0 -6.5V-2.4"/>
+                <path d="M0 -5.5-1.8-3.9M0 -5.5 1.9-6.8M1.9-6.8 4-9.1"/>
+                <path d="M0 -2.4-1.5 0M0 -2.4 1.5 0"/>
+              </g></g>
+              <g transform="translate(48,92)"><g class="stk us c">
+                <circle cx="0" cy="-8" r="1.5"/><path d="M0 -6.5V-2.4"/>
+                <path d="M0 -5.5-1.8-3.9M0 -5.5 1.9-6.8M1.9-6.8 4-9.1"/>
+                <path d="M0 -2.4-1.5 0M0 -2.4 1.5 0"/>
+              </g></g>
+              <g transform="translate(66,92)"><g class="stk them">
+                <circle cx="0" cy="-8" r="1.5"/><path d="M0 -6.5V-2.4"/>
+                <path d="M0 -5.4-2.1-7.5M0 -5.4 2.1-7.5"/>
+                <path d="M0 -2.4-1.6 0M0 -2.4 1.6 0"/>
+              </g></g>
+              <text class="stklab" x="39" y="97" fill="oklch(0.825 0.105 84)">1904</text>
+              <text class="stklab" x="66" y="97" fill="oklch(0.70 0.19 31)">1907</text>
             </g>
           </svg>
           <div class="kc"><b>Castle</b><span class="who who0 notranslate">1907</span><span class="who who1 notranslate">ours</span></div>
