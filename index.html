@@ -833,14 +833,21 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
       </div>
       <div class="ratiocard off">
         <div class="rt">Preset 2 &middot; Rally attack</div>
-        <div class="trip notranslate">50 / <span class="z">0</span> / 50<small>inf / cav / arch</small></div>
-        <div class="rbar" role="img" aria-label="50 percent infantry, no cavalry, 50 percent archers">
-          <i class="i" style="flex:50">50</i><i class="a" style="flex:50">50</i>
+        <div class="trip notranslate">50 / 20 / 30<small>inf / cav / arch</small></div>
+        <div class="rbar" role="img" aria-label="50 percent infantry, 20 percent cavalry, 30 percent archers">
+          <i class="i" style="flex:50">50</i><i class="c" style="flex:20">20</i><i class="a" style="flex:30">30</i>
         </div>
-        <p><b>50 infantry, 50 archers, no cavalry.</b> Archers hard counter infantry, and their garrison will be
-          infantry heavy. Half your march soaks the damage, the other half melts the defenders as fast as possible.</p>
-        <p>The catch: this is weak into a garrison with unusually strong cavalry, since they will cut through the
-          frontline. If a rally lead calls something different, that is why.</p>
+        <p><b>50 infantry, 20 cavalry, 30 archers.</b> The standard rally split and our default. Infantry soak the
+          first waves, archers do most of the damage, and the cavalry get in behind at their back line.</p>
+      </div>
+      <div class="ratiocard off">
+        <div class="rt">Preset 3 &middot; Against heavy infantry</div>
+        <div class="trip notranslate">30 / 20 / 50<small>inf / cav / arch</small></div>
+        <div class="rbar" role="img" aria-label="30 percent infantry, 20 percent cavalry, 50 percent archers">
+          <i class="i" style="flex:30">30</i><i class="c" style="flex:20">20</i><i class="a" style="flex:50">50</i>
+        </div>
+        <p><b>30 infantry, 20 cavalry, 50 archers.</b> Archers counter infantry, so if their garrison is stacked with
+          it this shreds them. <b>Only when the rally lead calls it</b>, after scouting. Do not switch on your own.</p>
       </div>
     </div>
 
@@ -848,8 +855,8 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
       <div class="big">Everyone sends the exact ratio the rally lead calls</div>
       <p>These only work if the whole rally matches. One person sending their own mix drags the combined ratio off
         and the counter stops working for everybody in it.</p>
-      <p><b>Save both as presets before battle day.</b> Preset 1 garrison, Preset 2 rally attack, so nobody is
-        dragging sliders around while a rally timer is running.</p>
+      <p><b>Save all three as presets before battle day.</b> Preset 1 garrison, Preset 2 rally attack, Preset 3 the
+        anti infantry counter, so nobody is dragging sliders around while a rally timer is running.</p>
     </div>
 
     <details class="why">
@@ -869,15 +876,23 @@ footer a{color:var(--brass);text-decoration:none;border-bottom:1px solid oklch(0
           cavalry <b>"sometimes activate skills to directly attack enemy Archers in the back row"</b>. So our cavalry
           go over their wall and kill the archers actually doing the damage, while our infantry hold the front.</p>
 
-        <h4>Why the attack drops cavalry</h4>
-        <p>Their garrison will be infantry heavy, and archers are the hard counter to infantry. Cavalry are the worst
-          of the three into that, since infantry counter cavalry, so the slot is better spent on more archers.</p>
+        <h4>Why the attack keeps all three</h4>
+        <p>50/20/30 is what basically every guide lands on for a rally, and it is what we default to. If we scout
+          their garrison and it is stacked with infantry, the counter is to swap archers up to 50 and infantry down
+          to 30, because archers beat infantry. We keep the cavalry either way, partly so they can get in at the
+          archers behind their wall and partly because dropping a type to zero strands whichever of your heroes is
+          that type.</p>
 
-        <h4>What we are giving up</h4>
-        <p>Zeroing a type means that type's hero skills add nothing to the march, and some guides tell you to keep 5%
-          of each type for exactly that reason. We are taking that trade knowingly, because in a garrison fight the
-          counter matchup is worth more than a partial hero bonus. It is also what the
-          <a href="https://texnottexas.github.io/kingshot-garrison/">garrison guide</a> has said all along.</p>
+        <h4>What the garrison gives up</h4>
+        <p>Heroes buff their own troop type, so a garrison with no archers gets nothing from the archer stats on
+          <b>Saul</b> or <b>Gordon</b>, who are both archer heroes. Their joiner skills still fire, that part is in
+          the official combat rules, it is only the stat side that goes to waste. Zero archer garrisons are a normal
+          thing to run and the <a href="https://texnottexas.github.io/kingshot-garrison/">garrison guide</a> says the
+          same, so we are taking that trade on purpose.</p>
+
+        <h4>One caveat on the whole thing</h4>
+        <p>The counter triangle only applies to straight troop against troop damage, and hero skills can override it.
+          It decides close fights. It will not save a march that is simply outgunned.</p>
       </div>
     </details>
 
